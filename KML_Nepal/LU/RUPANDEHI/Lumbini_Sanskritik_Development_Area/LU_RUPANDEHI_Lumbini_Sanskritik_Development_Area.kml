@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="root_doc">
+    <Schema id="LU_RUPANDEHI_Lumbini_Sanskritik_Development_Area.schema">
+      <SimpleField name="ogc_fid" type="int"/>
+      <SimpleField name="objectid_1" type="float"/>
+      <SimpleField name="dcode" type="int"/>
+      <SimpleField name="district" type="string"/>
+      <SimpleField name="dan" type="string"/>
+      <SimpleField name="das" type="int"/>
+      <SimpleField name="gapa_napa" type="string"/>
+      <SimpleField name="type_gn" type="string"/>
+      <SimpleField name="gn_code" type="float"/>
+      <SimpleField name="new_ward_n" type="float"/>
+      <SimpleField name="ddgnww" type="float"/>
+      <SimpleField name="center" type="string"/>
+      <SimpleField name="state_code" type="int"/>
+      <SimpleField name="ddgn" type="float"/>
+      <SimpleField name="area_sqkm" type="float"/>
+      <SimpleField name="shape_leng" type="float"/>
+      <SimpleField name="shape_area" type="float"/>
+      <SimpleField name="Province" type="string"/>
+      <SimpleField name="Address" type="string"/>
+    </Schema>
+    <Document id="LU_RUPANDEHI_Lumbini_Sanskritik_Development_Area">
+      <name>LU_RUPANDEHI_Lumbini_Sanskritik_Development_Area</name>
+      <Placemark id="LU_RUPANDEHI_Lumbini_Sanskritik_Development_Area.1">
+        <ExtendedData>
+          <SchemaData schemaUrl="#LU_RUPANDEHI_Lumbini_Sanskritik_Development_Area.schema">
+            <SimpleData name="ogc_fid">4236</SimpleData>
+            <SimpleData name="objectid_1">4237</SimpleData>
+            <SimpleData name="dcode">49</SimpleData>
+            <SimpleData name="district">RUPANDEHI</SimpleData>
+            <SimpleData name="das">0</SimpleData>
+            <SimpleData name="gapa_napa">Lumbini Sanskritik Development Area</SimpleData>
+            <SimpleData name="type_gn">Development Area</SimpleData>
+            <SimpleData name="gn_code">99.000000000000000</SimpleData>
+            <SimpleData name="new_ward_n">99</SimpleData>
+            <SimpleData name="ddgnww">499999.000000000058208</SimpleData>
+            <SimpleData name="state_code">5</SimpleData>
+            <SimpleData name="ddgn">49099</SimpleData>
+            <SimpleData name="area_sqkm">7.856090999770000</SimpleData>
+            <SimpleData name="shape_leng">12794.949840999999651</SimpleData>
+            <SimpleData name="shape_area">7856090.999770000576973</SimpleData>
+            <SimpleData name="Province">LU</SimpleData>
+            <SimpleData name="Address">Lumbini Sanskritik Development Area-99, RUPANDEHI, LU</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                83.2845733448031,27.5030220794836,0
+                83.2845658374677,27.5001723991153,0
+                83.2844250415076,27.4936737955755,0
+                83.2842402302876,27.4783394872735,0
+                83.2842379810658,27.4782943664511,0
+                83.2841410324628,27.4762700474077,0
+                83.283996972646,27.4705249374903,0
+                83.284039155267,27.4704574448499,0
+                83.284004597107,27.4704663182606,0
+                83.2840017244005,27.4703760135772,0
+                83.283893425759,27.4670768719858,0
+                83.283935796323,27.4670273769141,0
+                83.2839304846947,27.4670138780823,0
+                83.2838288817373,27.4632612147642,0
+                83.283715090154,27.4629651151604,0
+                83.2831299924431,27.4623100402582,0
+                83.2811646918377,27.4623156979369,0
+                83.2678670280775,27.462350183028,0
+                83.2675043820805,27.4627453916774,0
+                83.2676394577836,27.4710467709104,0
+                83.2677630480674,27.4786553991931,0
+                83.2677664150833,27.4790570502459,0
+                83.2677245427619,27.4791741645372,0
+                83.2677675374701,27.4791721028697,0
+                83.267771096125,27.4793571482822,0
+                83.2678101140521,27.4814420861261,0
+                83.2677543671614,27.4816493790759,0
+                83.2677556782626,27.4817351215905,0
+                83.2679729119333,27.4943147411376,0
+                83.2680714766554,27.5001724014016,0
+                83.268112229812,27.5030357067378,0
+                83.2681349086946,27.5032908083903,0
+                83.2681715568432,27.5051117702146,0
+                83.2682509114196,27.5056491599851,0
+                83.2689419373061,27.5060408855463,0
+                83.2842253983828,27.5059601215179,0
+                83.2844868700886,27.5056343423737,0
+                83.2846715435891,27.5050531480403,0
+                83.2845733448031,27.5030220794836,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Document>
+  </Document>
+</kml>
