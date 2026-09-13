@@ -1,0 +1,1317 @@
+{
+  "schema": 1,
+  "province": "SU",
+  "npp": "NPP7",
+  "name": "Sudurpashchim",
+  "bbox": [
+    80.057972,
+    28.393934,
+    81.808609,
+    30.473469
+  ],
+  "count": 93,
+  "items": [
+    {
+      "district": "ACHHAM",
+      "municipality": "Bannigadhi_Jayagadh",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 106902,
+      "file": "SU/ACHHAM/Bannigadhi_Jayagadh/SU_ACHHAM_Bannigadhi_Jayagadh.kml",
+      "bbox": [
+        81.240788,
+        29.16019,
+        81.363744,
+        29.22646
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Chaurpati",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 187462,
+      "file": "SU/ACHHAM/Chaurpati/SU_ACHHAM_Chaurpati.kml",
+      "bbox": [
+        81.025982,
+        29.098807,
+        81.216922,
+        29.305309
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Dhakari",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 269704,
+      "file": "SU/ACHHAM/Dhakari/SU_ACHHAM_Dhakari.kml",
+      "bbox": [
+        81.101386,
+        28.901785,
+        81.33808,
+        29.051022
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Kamalbazar",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 204467,
+      "file": "SU/ACHHAM/Kamalbazar/SU_ACHHAM_Kamalbazar.kml",
+      "bbox": [
+        81.248718,
+        29.005468,
+        81.427933,
+        29.125112
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Khaptad_National_Park",
+      "type": "National Park",
+      "wards": 1,
+      "size": 52519,
+      "file": "SU/ACHHAM/Khaptad_National_Park/SU_ACHHAM_Khaptad_National_Park.kml",
+      "bbox": [
+        81.134311,
+        29.294099,
+        81.225743,
+        29.387095
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Mangalsen",
+      "type": "Nagarpalika",
+      "wards": 14,
+      "size": 296003,
+      "file": "SU/ACHHAM/Mangalsen/SU_ACHHAM_Mangalsen.kml",
+      "bbox": [
+        81.104996,
+        29.0226,
+        81.353309,
+        29.168484
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Mellekh",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 139906,
+      "file": "SU/ACHHAM/Mellekh/SU_ACHHAM_Mellekh.kml",
+      "bbox": [
+        81.228986,
+        29.2083,
+        81.414677,
+        29.325567
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Panchadewal_Binayak",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 126841,
+      "file": "SU/ACHHAM/Panchadewal_Binayak/SU_ACHHAM_Panchadewal_Binayak.kml",
+      "bbox": [
+        81.365465,
+        29.025322,
+        81.565946,
+        29.173442
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Ramaroshan",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 132955,
+      "file": "SU/ACHHAM/Ramaroshan/SU_ACHHAM_Ramaroshan.kml",
+      "bbox": [
+        81.337134,
+        29.116516,
+        81.500015,
+        29.287863
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Sanphebagar",
+      "type": "Nagarpalika",
+      "wards": 14,
+      "size": 279064,
+      "file": "SU/ACHHAM/Sanphebagar/SU_ACHHAM_Sanphebagar.kml",
+      "bbox": [
+        81.12281,
+        29.156902,
+        81.269609,
+        29.361286
+      ]
+    },
+    {
+      "district": "ACHHAM",
+      "municipality": "Turmakhad",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 240759,
+      "file": "SU/ACHHAM/Turmakhad/SU_ACHHAM_Turmakhad.kml",
+      "bbox": [
+        81.294694,
+        28.747702,
+        81.582425,
+        29.025147
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Dasharathchanda",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 190756,
+      "file": "SU/BAITADI/Dasharathchanda/SU_BAITADI_Dasharathchanda.kml",
+      "bbox": [
+        80.340836,
+        29.466722,
+        80.510603,
+        29.620671
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Dilasaini",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 202763,
+      "file": "SU/BAITADI/Dilasaini/SU_BAITADI_Dilasaini.kml",
+      "bbox": [
+        80.504564,
+        29.612595,
+        80.796407,
+        29.708407
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Dogadakedar",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 227535,
+      "file": "SU/BAITADI/Dogadakedar/SU_BAITADI_Dogadakedar.kml",
+      "bbox": [
+        80.422501,
+        29.542038,
+        80.61799,
+        29.641358
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Melauli",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 154116,
+      "file": "SU/BAITADI/Melauli/SU_BAITADI_Melauli.kml",
+      "bbox": [
+        80.3444,
+        29.346791,
+        80.494123,
+        29.492633
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Pancheshwar",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 121079,
+      "file": "SU/BAITADI/Pancheshwar/SU_BAITADI_Pancheshwar.kml",
+      "bbox": [
+        80.241076,
+        29.368875,
+        80.417906,
+        29.523974
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Patan",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 322907,
+      "file": "SU/BAITADI/Patan/SU_BAITADI_Patan.kml",
+      "bbox": [
+        80.457282,
+        29.381989,
+        80.719016,
+        29.519038
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Purchaudi",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 239836,
+      "file": "SU/BAITADI/Purchaudi/SU_BAITADI_Purchaudi.kml",
+      "bbox": [
+        80.584923,
+        29.5294,
+        80.791268,
+        29.680064
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Shivanath",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 125123,
+      "file": "SU/BAITADI/Shivanath/SU_BAITADI_Shivanath.kml",
+      "bbox": [
+        80.270596,
+        29.307863,
+        80.391741,
+        29.460185
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Sigas",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 191591,
+      "file": "SU/BAITADI/Sigas/SU_BAITADI_Sigas.kml",
+      "bbox": [
+        80.664642,
+        29.364205,
+        80.908659,
+        29.535136
+      ]
+    },
+    {
+      "district": "BAITADI",
+      "municipality": "Surnaya",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 259089,
+      "file": "SU/BAITADI/Surnaya/SU_BAITADI_Surnaya.kml",
+      "bbox": [
+        80.477255,
+        29.482833,
+        80.7228,
+        29.575651
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Bithadchir",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 103892,
+      "file": "SU/BAJHANG/Bithadchir/SU_BAJHANG_Bithadchir.kml",
+      "bbox": [
+        80.745468,
+        29.440886,
+        80.911044,
+        29.568519
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Bungal",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 234493,
+      "file": "SU/BAJHANG/Bungal/SU_BAJHANG_Bungal.kml",
+      "bbox": [
+        80.76137,
+        29.542791,
+        81.104095,
+        29.835699
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Chabispathivera",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 99665,
+      "file": "SU/BAJHANG/Chabispathivera/SU_BAJHANG_Chabispathivera.kml",
+      "bbox": [
+        80.985749,
+        29.48818,
+        81.131932,
+        29.63209
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Durgathali",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 83124,
+      "file": "SU/BAJHANG/Durgathali/SU_BAJHANG_Durgathali.kml",
+      "bbox": [
+        80.952543,
+        29.477382,
+        81.055885,
+        29.595305
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "JayaPrithivi",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 184052,
+      "file": "SU/BAJHANG/JayaPrithivi/SU_BAJHANG_JayaPrithivi.kml",
+      "bbox": [
+        81.112285,
+        29.467341,
+        81.311658,
+        29.635457
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Kanda",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 423222,
+      "file": "SU/BAJHANG/Kanda/SU_BAJHANG_Kanda.kml",
+      "bbox": [
+        81.000001,
+        29.658237,
+        81.565401,
+        30.05474
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Kedarseu",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 124503,
+      "file": "SU/BAJHANG/Kedarseu/SU_BAJHANG_Kedarseu.kml",
+      "bbox": [
+        80.85818,
+        29.444329,
+        81.013956,
+        29.578715
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Khaptad_National_Park",
+      "type": "National Park",
+      "wards": 1,
+      "size": 87323,
+      "file": "SU/BAJHANG/Khaptad_National_Park/SU_BAJHANG_Khaptad_National_Park.kml",
+      "bbox": [
+        81.024131,
+        29.390364,
+        81.227497,
+        29.466391
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Khaptadchhanna",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 177389,
+      "file": "SU/BAJHANG/Khaptadchhanna/SU_BAJHANG_Khaptadchhanna.kml",
+      "bbox": [
+        81.087127,
+        29.410055,
+        81.308132,
+        29.50613
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Masta",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 87422,
+      "file": "SU/BAJHANG/Masta/SU_BAJHANG_Masta.kml",
+      "bbox": [
+        81.204722,
+        29.479022,
+        81.366831,
+        29.607359
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Surma",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 134662,
+      "file": "SU/BAJHANG/Surma/SU_BAJHANG_Surma.kml",
+      "bbox": [
+        81.02174,
+        29.56572,
+        81.223301,
+        29.823299
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Talkot",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 174264,
+      "file": "SU/BAJHANG/Talkot/SU_BAJHANG_Talkot.kml",
+      "bbox": [
+        81.123551,
+        29.543579,
+        81.467678,
+        29.825978
+      ]
+    },
+    {
+      "district": "BAJHANG",
+      "municipality": "Thalara",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 155391,
+      "file": "SU/BAJHANG/Thalara/SU_BAJHANG_Thalara.kml",
+      "bbox": [
+        80.910861,
+        29.396979,
+        81.133896,
+        29.505102
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Badimalika",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 173828,
+      "file": "SU/BAJURA/Badimalika/SU_BAJURA_Badimalika.kml",
+      "bbox": [
+        81.382316,
+        29.345581,
+        81.592908,
+        29.534386
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Budhiganga",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 87020,
+      "file": "SU/BAJURA/Budhiganga/SU_BAJURA_Budhiganga.kml",
+      "bbox": [
+        81.252481,
+        29.301089,
+        81.394318,
+        29.42015
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Budhinanda",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 155071,
+      "file": "SU/BAJURA/Budhinanda/SU_BAJURA_Budhinanda.kml",
+      "bbox": [
+        81.535918,
+        29.413194,
+        81.717427,
+        29.662029
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Chhededaha",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 119055,
+      "file": "SU/BAJURA/Chhededaha/SU_BAJURA_Chhededaha.kml",
+      "bbox": [
+        81.189718,
+        29.336515,
+        81.417606,
+        29.460356
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Gaumul",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 134424,
+      "file": "SU/BAJURA/Gaumul/SU_BAJURA_Gaumul.kml",
+      "bbox": [
+        81.290293,
+        29.443975,
+        81.573153,
+        29.692895
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Himali",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 242976,
+      "file": "SU/BAJURA/Himali/SU_BAJURA_Himali.kml",
+      "bbox": [
+        81.504987,
+        29.47367,
+        81.799918,
+        29.949706
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Khaptad_National_Park",
+      "type": "National Park",
+      "wards": 1,
+      "size": 21077,
+      "file": "SU/BAJURA/Khaptad_National_Park/SU_BAJURA_Khaptad_National_Park.kml",
+      "bbox": [
+        81.169392,
+        29.371182,
+        81.227492,
+        29.412189
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Pandav_Gupha",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 80545,
+      "file": "SU/BAJURA/Pandav_Gupha/SU_BAJURA_Pandav_Gupha.kml",
+      "bbox": [
+        81.557793,
+        29.316337,
+        81.746784,
+        29.48249
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Swami_Kartik",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 75840,
+      "file": "SU/BAJURA/Swami_Kartik/SU_BAJURA_Swami_Kartik.kml",
+      "bbox": [
+        81.705307,
+        29.341619,
+        81.808609,
+        29.505796
+      ]
+    },
+    {
+      "district": "BAJURA",
+      "municipality": "Tribeni",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 126180,
+      "file": "SU/BAJURA/Tribeni/SU_BAJURA_Tribeni.kml",
+      "bbox": [
+        81.302402,
+        29.271328,
+        81.559709,
+        29.39901
+      ]
+    },
+    {
+      "district": "DADELDHURA",
+      "municipality": "Ajaymeru",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 219278,
+      "file": "SU/DADELDHURA/Ajaymeru/SU_DADELDHURA_Ajaymeru.kml",
+      "bbox": [
+        80.402257,
+        29.308688,
+        80.623657,
+        29.418984
+      ]
+    },
+    {
+      "district": "DADELDHURA",
+      "municipality": "Alital",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 265904,
+      "file": "SU/DADELDHURA/Alital/SU_DADELDHURA_Alital.kml",
+      "bbox": [
+        80.424913,
+        28.992703,
+        80.620118,
+        29.237042
+      ]
+    },
+    {
+      "district": "DADELDHURA",
+      "municipality": "Amargadhi",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 315276,
+      "file": "SU/DADELDHURA/Amargadhi/SU_DADELDHURA_Amargadhi.kml",
+      "bbox": [
+        80.478781,
+        29.222003,
+        80.670943,
+        29.390357
+      ]
+    },
+    {
+      "district": "DADELDHURA",
+      "municipality": "Bhageshwar",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 194568,
+      "file": "SU/DADELDHURA/Bhageshwar/SU_DADELDHURA_Bhageshwar.kml",
+      "bbox": [
+        80.290075,
+        29.20213,
+        80.557066,
+        29.361133
+      ]
+    },
+    {
+      "district": "DADELDHURA",
+      "municipality": "Ganayapdhura",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 188987,
+      "file": "SU/DADELDHURA/Ganayapdhura/SU_DADELDHURA_Ganayapdhura.kml",
+      "bbox": [
+        80.600788,
+        29.175815,
+        80.757283,
+        29.3193
+      ]
+    },
+    {
+      "district": "DADELDHURA",
+      "municipality": "Nawadurga",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 225590,
+      "file": "SU/DADELDHURA/Nawadurga/SU_DADELDHURA_Nawadurga.kml",
+      "bbox": [
+        80.618135,
+        29.300925,
+        80.786255,
+        29.425588
+      ]
+    },
+    {
+      "district": "DADELDHURA",
+      "municipality": "Parashuram",
+      "type": "Nagarpalika",
+      "wards": 12,
+      "size": 310943,
+      "file": "SU/DADELDHURA/Parashuram/SU_DADELDHURA_Parashuram.kml",
+      "bbox": [
+        80.183853,
+        29.005671,
+        80.492391,
+        29.253623
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Apihimal",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 265613,
+      "file": "SU/DARCHULA/Apihimal/SU_DARCHULA_Apihimal.kml",
+      "bbox": [
+        80.720887,
+        29.740036,
+        81.071419,
+        29.993506
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Byas",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 366203,
+      "file": "SU/DARCHULA/Byas/SU_DARCHULA_Byas.kml",
+      "bbox": [
+        80.524939,
+        29.868094,
+        81.109134,
+        30.473469
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Dunhu",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 94100,
+      "file": "SU/DARCHULA/Dunhu/SU_DARCHULA_Dunhu.kml",
+      "bbox": [
+        80.556177,
+        29.847154,
+        80.67926,
+        29.935838
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Lekam",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 151739,
+      "file": "SU/DARCHULA/Lekam/SU_DARCHULA_Lekam.kml",
+      "bbox": [
+        80.382788,
+        29.604439,
+        80.528488,
+        29.710073
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Mahakali",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 155687,
+      "file": "SU/DARCHULA/Mahakali/SU_DARCHULA_Mahakali.kml",
+      "bbox": [
+        80.395631,
+        29.750009,
+        80.647747,
+        29.865122
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Malikaarjun",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 167812,
+      "file": "SU/DARCHULA/Malikaarjun/SU_DARCHULA_Malikaarjun.kml",
+      "bbox": [
+        80.363601,
+        29.67758,
+        80.5282,
+        29.782043
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Marma",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 164353,
+      "file": "SU/DARCHULA/Marma/SU_DARCHULA_Marma.kml",
+      "bbox": [
+        80.664885,
+        29.683514,
+        80.988536,
+        29.798578
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Naugad",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 168267,
+      "file": "SU/DARCHULA/Naugad/SU_DARCHULA_Naugad.kml",
+      "bbox": [
+        80.55861,
+        29.720481,
+        80.750267,
+        29.875836
+      ]
+    },
+    {
+      "district": "DARCHULA",
+      "municipality": "Shailyashikhar",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 195075,
+      "file": "SU/DARCHULA/Shailyashikhar/SU_DARCHULA_Shailyashikhar.kml",
+      "bbox": [
+        80.458716,
+        29.65236,
+        80.683046,
+        29.760116
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Adharsha",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 128916,
+      "file": "SU/DOTI/Adharsha/SU_DOTI_Adharsha.kml",
+      "bbox": [
+        80.762838,
+        29.283146,
+        80.963901,
+        29.417286
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Badikedar",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 260207,
+      "file": "SU/DOTI/Badikedar/SU_DOTI_Badikedar.kml",
+      "bbox": [
+        80.734988,
+        28.93013,
+        81.00393,
+        29.128664
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Bogtan",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 226031,
+      "file": "SU/DOTI/Bogtan/SU_DOTI_Bogtan.kml",
+      "bbox": [
+        80.884415,
+        28.938206,
+        81.150545,
+        29.162589
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Dipayal_Silgadi",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 178182,
+      "file": "SU/DOTI/Dipayal_Silgadi/SU_DOTI_Dipayal_Silgadi.kml",
+      "bbox": [
+        80.846416,
+        29.180874,
+        81.053572,
+        29.335757
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Jorayal",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 317208,
+      "file": "SU/DOTI/Jorayal/SU_DOTI_Jorayal.kml",
+      "bbox": [
+        80.525638,
+        29.006645,
+        80.870162,
+        29.195352
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "K_I_Singh",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 161049,
+      "file": "SU/DOTI/K_I_Singh/SU_DOTI_K_I_Singh.kml",
+      "bbox": [
+        80.878353,
+        29.116268,
+        81.054855,
+        29.241175
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Khaptad_National_Park",
+      "type": "National Park",
+      "wards": 1,
+      "size": 64133,
+      "file": "SU/DOTI/Khaptad_National_Park/SU_DOTI_Khaptad_National_Park.kml",
+      "bbox": [
+        81.022637,
+        29.307014,
+        81.187364,
+        29.412053
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Purbichauki",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 159637,
+      "file": "SU/DOTI/Purbichauki/SU_DOTI_Purbichauki.kml",
+      "bbox": [
+        80.999207,
+        29.194729,
+        81.136069,
+        29.343407
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Sayal",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 115295,
+      "file": "SU/DOTI/Sayal/SU_DOTI_Sayal.kml",
+      "bbox": [
+        80.878022,
+        29.289906,
+        81.053261,
+        29.446151
+      ]
+    },
+    {
+      "district": "DOTI",
+      "municipality": "Shikhar",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 373512,
+      "file": "SU/DOTI/Shikhar/SU_DOTI_Shikhar.kml",
+      "bbox": [
+        80.701324,
+        29.124826,
+        80.933764,
+        29.364159
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Bardagoriya",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 97975,
+      "file": "SU/KAILALI/Bardagoriya/SU_KAILALI_Bardagoriya.kml",
+      "bbox": [
+        80.993398,
+        28.612398,
+        81.080185,
+        28.762881
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Bhajani",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 190300,
+      "file": "SU/KAILALI/Bhajani/SU_KAILALI_Bhajani.kml",
+      "bbox": [
+        80.89048,
+        28.433838,
+        81.047673,
+        28.606484
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Chure",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 282555,
+      "file": "SU/KAILALI/Chure/SU_KAILALI_Chure.kml",
+      "bbox": [
+        80.516963,
+        28.785654,
+        80.862882,
+        29.068583
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Dhangadhi",
+      "type": "Upamahanagarpalika",
+      "wards": 19,
+      "size": 495644,
+      "file": "SU/KAILALI/Dhangadhi/SU_KAILALI_Dhangadhi.kml",
+      "bbox": [
+        80.53756,
+        28.565345,
+        80.756891,
+        28.785008
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Gauriganga",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 308105,
+      "file": "SU/KAILALI/Gauriganga/SU_KAILALI_Gauriganga.kml",
+      "bbox": [
+        80.635436,
+        28.633967,
+        80.897532,
+        28.866102
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Ghodaghodi",
+      "type": "Nagarpalika",
+      "wards": 12,
+      "size": 294928,
+      "file": "SU/KAILALI/Ghodaghodi/SU_KAILALI_Ghodaghodi.kml",
+      "bbox": [
+        80.830928,
+        28.58685,
+        81.031432,
+        28.835887
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Godawari",
+      "type": "Nagarpalika",
+      "wards": 12,
+      "size": 370292,
+      "file": "SU/KAILALI/Godawari/SU_KAILALI_Godawari.kml",
+      "bbox": [
+        80.467586,
+        28.725701,
+        80.676252,
+        28.999723
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Janaki",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 168094,
+      "file": "SU/KAILALI/Janaki/SU_KAILALI_Janaki.kml",
+      "bbox": [
+        81.039784,
+        28.521203,
+        81.260976,
+        28.615086
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Joshipur",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 160621,
+      "file": "SU/KAILALI/Joshipur/SU_KAILALI_Joshipur.kml",
+      "bbox": [
+        80.983464,
+        28.513461,
+        81.067004,
+        28.624565
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Kailari",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 204850,
+      "file": "SU/KAILALI/Kailari/SU_KAILALI_Kailari.kml",
+      "bbox": [
+        80.715145,
+        28.48905,
+        80.912282,
+        28.707741
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Lamkichuha",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 296070,
+      "file": "SU/KAILALI/Lamkichuha/SU_KAILALI_Lamkichuha.kml",
+      "bbox": [
+        81.052899,
+        28.583758,
+        81.288131,
+        28.731339
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Mohanyal",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 359690,
+      "file": "SU/KAILALI/Mohanyal/SU_KAILALI_Mohanyal.kml",
+      "bbox": [
+        80.794869,
+        28.648604,
+        81.288417,
+        28.978084
+      ]
+    },
+    {
+      "district": "KAILALI",
+      "municipality": "Tikapur",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 171773,
+      "file": "SU/KAILALI/Tikapur/SU_KAILALI_Tikapur.kml",
+      "bbox": [
+        81.012438,
+        28.393934,
+        81.168372,
+        28.5545
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Bedkot",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 265385,
+      "file": "SU/KANCHANPUR/Bedkot/SU_KANCHANPUR_Bedkot.kml",
+      "bbox": [
+        80.200161,
+        28.909122,
+        80.345722,
+        29.058973
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Belauri",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 226934,
+      "file": "SU/KANCHANPUR/Belauri/SU_KANCHANPUR_Belauri.kml",
+      "bbox": [
+        80.255687,
+        28.627806,
+        80.428534,
+        28.773108
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Beldandi",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 83014,
+      "file": "SU/KANCHANPUR/Beldandi/SU_KANCHANPUR_Beldandi.kml",
+      "bbox": [
+        80.217925,
+        28.743332,
+        80.315174,
+        28.803861
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Bhimdatta",
+      "type": "Nagarpalika",
+      "wards": 19,
+      "size": 312240,
+      "file": "SU/KANCHANPUR/Bhimdatta/SU_KANCHANPUR_Bhimdatta.kml",
+      "bbox": [
+        80.103021,
+        28.894659,
+        80.242723,
+        29.137736
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Krishnapur",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 268686,
+      "file": "SU/KANCHANPUR/Krishnapur/SU_KANCHANPUR_Krishnapur.kml",
+      "bbox": [
+        80.389599,
+        28.710908,
+        80.559919,
+        29.037958
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Laljhadi",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 186547,
+      "file": "SU/KANCHANPUR/Laljhadi/SU_KANCHANPUR_Laljhadi.kml",
+      "bbox": [
+        80.337843,
+        28.665599,
+        80.512583,
+        28.847906
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Mahakali",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 131805,
+      "file": "SU/KANCHANPUR/Mahakali/SU_KANCHANPUR_Mahakali.kml",
+      "bbox": [
+        80.057972,
+        28.823834,
+        80.108886,
+        28.986922
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Punarbas",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 180708,
+      "file": "SU/KANCHANPUR/Punarbas/SU_KANCHANPUR_Punarbas.kml",
+      "bbox": [
+        80.39663,
+        28.551238,
+        80.55465,
+        28.727272
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Shuklaphanta",
+      "type": "Nagarpalika",
+      "wards": 12,
+      "size": 263996,
+      "file": "SU/KANCHANPUR/Shuklaphanta/SU_KANCHANPUR_Shuklaphanta.kml",
+      "bbox": [
+        80.314112,
+        28.803033,
+        80.45984,
+        29.048137
+      ]
+    },
+    {
+      "district": "KANCHANPUR",
+      "municipality": "Shuklaphanta_National_Park",
+      "type": "National Park",
+      "wards": 1,
+      "size": 155804,
+      "file": "SU/KANCHANPUR/Shuklaphanta_National_Park/SU_KANCHANPUR_Shuklaphanta_National_Park.kml",
+      "bbox": [
+        80.096864,
+        28.732511,
+        80.385132,
+        29.054677
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1121 @@
+{
+  "schema": 1,
+  "province": "KA",
+  "npp": "NPP6",
+  "name": "Karnali",
+  "bbox": [
+    80.980439,
+    28.150534,
+    83.680822,
+    30.447701
+  ],
+  "count": 79,
+  "items": [
+    {
+      "district": "DAILEKH",
+      "municipality": "Aathabis",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 166938,
+      "file": "KA/DAILEKH/Aathabis/KA_DAILEKH_Aathabis.kml",
+      "bbox": [
+        81.409534,
+        28.911399,
+        81.582582,
+        29.136389
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Bhagawatimai",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 164089,
+      "file": "KA/DAILEKH/Bhagawatimai/KA_DAILEKH_Bhagawatimai.kml",
+      "bbox": [
+        81.727497,
+        28.718184,
+        81.912786,
+        28.882856
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Bhairabi",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 131734,
+      "file": "KA/DAILEKH/Bhairabi/KA_DAILEKH_Bhairabi.kml",
+      "bbox": [
+        81.580387,
+        28.839342,
+        81.704081,
+        29.05034
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Chamunda_Bindrasaini",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 122099,
+      "file": "KA/DAILEKH/Chamunda_Bindrasaini/KA_DAILEKH_Chamunda_Bindrasaini.kml",
+      "bbox": [
+        81.477379,
+        28.867776,
+        81.626942,
+        29.00275
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Dullu",
+      "type": "Nagarpalika",
+      "wards": 13,
+      "size": 291164,
+      "file": "KA/DAILEKH/Dullu/KA_DAILEKH_Dullu.kml",
+      "bbox": [
+        81.522119,
+        28.759372,
+        81.689114,
+        28.906517
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Dungeshwor",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 122755,
+      "file": "KA/DAILEKH/Dungeshwor/KA_DAILEKH_Dungeshwor.kml",
+      "bbox": [
+        81.646359,
+        28.697295,
+        81.794367,
+        28.810324
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Gurans",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 161831,
+      "file": "KA/DAILEKH/Gurans/KA_DAILEKH_Gurans.kml",
+      "bbox": [
+        81.54589,
+        28.632822,
+        81.815022,
+        28.78689
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Mahabu",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 121007,
+      "file": "KA/DAILEKH/Mahabu/KA_DAILEKH_Mahabu.kml",
+      "bbox": [
+        81.648467,
+        28.85237,
+        81.745133,
+        29.032103
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Narayan",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 206806,
+      "file": "KA/DAILEKH/Narayan/KA_DAILEKH_Narayan.kml",
+      "bbox": [
+        81.675023,
+        28.800701,
+        81.821269,
+        28.954233
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Naumule",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 201543,
+      "file": "KA/DAILEKH/Naumule/KA_DAILEKH_Naumule.kml",
+      "bbox": [
+        81.719893,
+        28.831048,
+        81.927256,
+        29.019758
+      ]
+    },
+    {
+      "district": "DAILEKH",
+      "municipality": "Thantikandh",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 83262,
+      "file": "KA/DAILEKH/Thantikandh/KA_DAILEKH_Thantikandh.kml",
+      "bbox": [
+        81.480966,
+        28.931863,
+        81.621621,
+        29.054102
+      ]
+    },
+    {
+      "district": "DOLPA",
+      "municipality": "Chharka_Tangsong",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 509757,
+      "file": "KA/DOLPA/Chharka_Tangsong/KA_DOLPA_Chharka_Tangsong.kml",
+      "bbox": [
+        83.029616,
+        28.721409,
+        83.680822,
+        29.237901
+      ]
+    },
+    {
+      "district": "DOLPA",
+      "municipality": "Dolpo_Buddha",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 398472,
+      "file": "KA/DOLPA/Dolpo_Buddha/KA_DOLPA_Dolpo_Buddha.kml",
+      "bbox": [
+        83.044368,
+        29.004242,
+        83.523247,
+        29.570039
+      ]
+    },
+    {
+      "district": "DOLPA",
+      "municipality": "Jagadulla",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 273174,
+      "file": "KA/DOLPA/Jagadulla/KA_DOLPA_Jagadulla.kml",
+      "bbox": [
+        82.432492,
+        29.052151,
+        82.796882,
+        29.429094
+      ]
+    },
+    {
+      "district": "DOLPA",
+      "municipality": "Kaike",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 305141,
+      "file": "KA/DOLPA/Kaike/KA_DOLPA_Kaike.kml",
+      "bbox": [
+        82.934433,
+        28.742648,
+        83.169479,
+        29.101026
+      ]
+    },
+    {
+      "district": "DOLPA",
+      "municipality": "Mudkechula",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 184868,
+      "file": "KA/DOLPA/Mudkechula/KA_DOLPA_Mudkechula.kml",
+      "bbox": [
+        82.391577,
+        28.974867,
+        82.664463,
+        29.139674
+      ]
+    },
+    {
+      "district": "DOLPA",
+      "municipality": "Shey_Phoksundo",
+      "type": "Gaunpalika",
+      "wards": 18,
+      "size": 951409,
+      "file": "KA/DOLPA/Shey_Phoksundo/KA_DOLPA_Shey_Phoksundo.kml",
+      "bbox": [
+        82.701373,
+        29.095167,
+        83.2681,
+        29.706874
+      ]
+    },
+    {
+      "district": "DOLPA",
+      "municipality": "Thuli_Bheri",
+      "type": "Nagarpalika",
+      "wards": 12,
+      "size": 368412,
+      "file": "KA/DOLPA/Thuli_Bheri/KA_DOLPA_Thuli_Bheri.kml",
+      "bbox": [
+        82.690336,
+        28.80803,
+        83.031236,
+        29.104574
+      ]
+    },
+    {
+      "district": "DOLPA",
+      "municipality": "Tripurasundari",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 277198,
+      "file": "KA/DOLPA/Tripurasundari/KA_DOLPA_Tripurasundari.kml",
+      "bbox": [
+        82.613613,
+        28.896316,
+        82.907466,
+        29.138533
+      ]
+    },
+    {
+      "district": "HUMLA",
+      "municipality": "Adanchuli",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 92358,
+      "file": "KA/HUMLA/Adanchuli/KA_HUMLA_Adanchuli.kml",
+      "bbox": [
+        81.769485,
+        29.618832,
+        81.944411,
+        29.782453
+      ]
+    },
+    {
+      "district": "HUMLA",
+      "municipality": "Chankheli",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 385799,
+      "file": "KA/HUMLA/Chankheli/KA_HUMLA_Chankheli.kml",
+      "bbox": [
+        81.992072,
+        29.634255,
+        82.49802,
+        30.075838
+      ]
+    },
+    {
+      "district": "HUMLA",
+      "municipality": "Kharpunath",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 348627,
+      "file": "KA/HUMLA/Kharpunath/KA_HUMLA_Kharpunath.kml",
+      "bbox": [
+        81.779358,
+        29.80988,
+        82.238254,
+        30.350104
+      ]
+    },
+    {
+      "district": "HUMLA",
+      "municipality": "Namkha",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 659280,
+      "file": "KA/HUMLA/Namkha/KA_HUMLA_Namkha.kml",
+      "bbox": [
+        81.25565,
+        29.886596,
+        81.927071,
+        30.447701
+      ]
+    },
+    {
+      "district": "HUMLA",
+      "municipality": "Sarkegad",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 220616,
+      "file": "KA/HUMLA/Sarkegad/KA_HUMLA_Sarkegad.kml",
+      "bbox": [
+        81.773044,
+        29.673554,
+        82.044163,
+        29.906292
+      ]
+    },
+    {
+      "district": "HUMLA",
+      "municipality": "Simkot",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 413614,
+      "file": "KA/HUMLA/Simkot/KA_HUMLA_Simkot.kml",
+      "bbox": [
+        81.683728,
+        29.906729,
+        82.098351,
+        30.365594
+      ]
+    },
+    {
+      "district": "HUMLA",
+      "municipality": "Tanjakot",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 87233,
+      "file": "KA/HUMLA/Tanjakot/KA_HUMLA_Tanjakot.kml",
+      "bbox": [
+        81.696453,
+        29.604349,
+        81.838753,
+        29.802254
+      ]
+    },
+    {
+      "district": "JAJARKOT",
+      "municipality": "Barekot",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 345072,
+      "file": "KA/JAJARKOT/Barekot/KA_JAJARKOT_Barekot.kml",
+      "bbox": [
+        82.116866,
+        28.844073,
+        82.412216,
+        29.127946
+      ]
+    },
+    {
+      "district": "JAJARKOT",
+      "municipality": "Bheri",
+      "type": "Nagarpalika",
+      "wards": 13,
+      "size": 234236,
+      "file": "KA/JAJARKOT/Bheri/KA_JAJARKOT_Bheri.kml",
+      "bbox": [
+        82.067502,
+        28.610758,
+        82.284742,
+        28.808349
+      ]
+    },
+    {
+      "district": "JAJARKOT",
+      "municipality": "Chhedagad",
+      "type": "Nagarpalika",
+      "wards": 13,
+      "size": 313193,
+      "file": "KA/JAJARKOT/Chhedagad/KA_JAJARKOT_Chhedagad.kml",
+      "bbox": [
+        81.87962,
+        28.629736,
+        82.16052,
+        28.873323
+      ]
+    },
+    {
+      "district": "JAJARKOT",
+      "municipality": "Junichande",
+      "type": "Gaunpalika",
+      "wards": 11,
+      "size": 341923,
+      "file": "KA/JAJARKOT/Junichande/KA_JAJARKOT_Junichande.kml",
+      "bbox": [
+        81.877761,
+        28.773567,
+        82.084554,
+        29.03112
+      ]
+    },
+    {
+      "district": "JAJARKOT",
+      "municipality": "Kuse",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 259886,
+      "file": "KA/JAJARKOT/Kuse/KA_JAJARKOT_Kuse.kml",
+      "bbox": [
+        82.054532,
+        28.76521,
+        82.235043,
+        28.996006
+      ]
+    },
+    {
+      "district": "JAJARKOT",
+      "municipality": "Shiwalaya",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 200883,
+      "file": "KA/JAJARKOT/Shiwalaya/KA_JAJARKOT_Shiwalaya.kml",
+      "bbox": [
+        81.81945,
+        28.635593,
+        82.04104,
+        28.747477
+      ]
+    },
+    {
+      "district": "JAJARKOT",
+      "municipality": "Tribeni_Nalagad",
+      "type": "Nagarpalika",
+      "wards": 13,
+      "size": 277171,
+      "file": "KA/JAJARKOT/Tribeni_Nalagad/KA_JAJARKOT_Tribeni_Nalagad.kml",
+      "bbox": [
+        82.197285,
+        28.713914,
+        82.580574,
+        29.017031
+      ]
+    },
+    {
+      "district": "JUMLA",
+      "municipality": "Chandannath",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 120951,
+      "file": "KA/JUMLA/Chandannath/KA_JUMLA_Chandannath.kml",
+      "bbox": [
+        82.088804,
+        29.241817,
+        82.217532,
+        29.363802
+      ]
+    },
+    {
+      "district": "JUMLA",
+      "municipality": "Guthichaur",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 249379,
+      "file": "KA/JUMLA/Guthichaur/KA_JUMLA_Guthichaur.kml",
+      "bbox": [
+        82.187513,
+        29.095006,
+        82.582605,
+        29.29949
+      ]
+    },
+    {
+      "district": "JUMLA",
+      "municipality": "Hima",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 134655,
+      "file": "KA/JUMLA/Hima/KA_JUMLA_Hima.kml",
+      "bbox": [
+        81.845676,
+        29.200826,
+        82.039963,
+        29.341254
+      ]
+    },
+    {
+      "district": "JUMLA",
+      "municipality": "Kanakasundari",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 152310,
+      "file": "KA/JUMLA/Kanakasundari/KA_JUMLA_Kanakasundari.kml",
+      "bbox": [
+        81.926816,
+        29.34055,
+        82.179824,
+        29.484579
+      ]
+    },
+    {
+      "district": "JUMLA",
+      "municipality": "Patrasi",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 567712,
+      "file": "KA/JUMLA/Patrasi/KA_JUMLA_Patrasi.kml",
+      "bbox": [
+        82.162805,
+        29.227389,
+        82.591668,
+        29.508521
+      ]
+    },
+    {
+      "district": "JUMLA",
+      "municipality": "Sinja",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 108829,
+      "file": "KA/JUMLA/Sinja/KA_JUMLA_Sinja.kml",
+      "bbox": [
+        81.923776,
+        29.278007,
+        82.130773,
+        29.405334
+      ]
+    },
+    {
+      "district": "JUMLA",
+      "municipality": "Tatopani",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 252831,
+      "file": "KA/JUMLA/Tatopani/KA_JUMLA_Tatopani.kml",
+      "bbox": [
+        82.010699,
+        28.968819,
+        82.278573,
+        29.29639
+      ]
+    },
+    {
+      "district": "JUMLA",
+      "municipality": "Tila",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 145432,
+      "file": "KA/JUMLA/Tila/KA_JUMLA_Tila.kml",
+      "bbox": [
+        81.894059,
+        29.094198,
+        82.064936,
+        29.278612
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Kalika",
+      "type": "Gaunpalika",
+      "wards": 8,
+      "size": 92048,
+      "file": "KA/KALIKOT/Kalika/KA_KALIKOT_Kalika.kml",
+      "bbox": [
+        81.561202,
+        29.03293,
+        81.696146,
+        29.127323
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Khandachakra",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 116242,
+      "file": "KA/KALIKOT/Khandachakra/KA_KALIKOT_Khandachakra.kml",
+      "bbox": [
+        81.578618,
+        29.102657,
+        81.767677,
+        29.212483
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Mahawai",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 180264,
+      "file": "KA/KALIKOT/Mahawai/KA_KALIKOT_Mahawai.kml",
+      "bbox": [
+        81.689902,
+        28.970436,
+        82.019819,
+        29.111634
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Naraharinath",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 119427,
+      "file": "KA/KALIKOT/Naraharinath/KA_KALIKOT_Naraharinath.kml",
+      "bbox": [
+        81.467453,
+        29.12559,
+        81.590598,
+        29.316056
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Pachaljharana",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 99071,
+      "file": "KA/KALIKOT/Pachaljharana/KA_KALIKOT_Pachaljharana.kml",
+      "bbox": [
+        81.626105,
+        29.176704,
+        81.808367,
+        29.342619
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Palata",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 197442,
+      "file": "KA/KALIKOT/Palata/KA_KALIKOT_Palata.kml",
+      "bbox": [
+        81.745784,
+        29.217689,
+        81.931351,
+        29.462084
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Raskot",
+      "type": "Nagarpalika",
+      "wards": 9,
+      "size": 95881,
+      "file": "KA/KALIKOT/Raskot/KA_KALIKOT_Raskot.kml",
+      "bbox": [
+        81.600739,
+        29.215207,
+        81.68399,
+        29.3342
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Sanni_Tribeni",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 102844,
+      "file": "KA/KALIKOT/Sanni_Tribeni/KA_KALIKOT_Sanni_Tribeni.kml",
+      "bbox": [
+        81.523272,
+        29.157909,
+        81.644479,
+        29.371225
+      ]
+    },
+    {
+      "district": "KALIKOT",
+      "municipality": "Tilagufa",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 168366,
+      "file": "KA/KALIKOT/Tilagufa/KA_KALIKOT_Tilagufa.kml",
+      "bbox": [
+        81.739618,
+        29.053077,
+        81.975821,
+        29.241975
+      ]
+    },
+    {
+      "district": "MUGU",
+      "municipality": "Chhayanath_Rara",
+      "type": "Nagarpalika",
+      "wards": 14,
+      "size": 320087,
+      "file": "KA/MUGU/Chhayanath_Rara/KA_MUGU_Chhayanath_Rara.kml",
+      "bbox": [
+        81.996377,
+        29.405582,
+        82.317391,
+        29.665288
+      ]
+    },
+    {
+      "district": "MUGU",
+      "municipality": "Khatyad",
+      "type": "Gaunpalika",
+      "wards": 11,
+      "size": 199580,
+      "file": "KA/MUGU/Khatyad/KA_MUGU_Khatyad.kml",
+      "bbox": [
+        81.761879,
+        29.4368,
+        82.044951,
+        29.623007
+      ]
+    },
+    {
+      "district": "MUGU",
+      "municipality": "Mugum_Karmarong",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 720128,
+      "file": "KA/MUGU/Mugum_Karmarong/KA_MUGU_Mugum_Karmarong.kml",
+      "bbox": [
+        82.220396,
+        29.384799,
+        82.829389,
+        29.971737
+      ]
+    },
+    {
+      "district": "MUGU",
+      "municipality": "Soru",
+      "type": "Gaunpalika",
+      "wards": 11,
+      "size": 211542,
+      "file": "KA/MUGU/Soru/KA_MUGU_Soru.kml",
+      "bbox": [
+        81.782837,
+        29.522452,
+        82.114182,
+        29.751425
+      ]
+    },
+    {
+      "district": "RUKUM_W",
+      "municipality": "Aathbiskot",
+      "type": "Nagarpalika",
+      "wards": 14,
+      "size": 274253,
+      "file": "KA/RUKUM_W/Aathbiskot/KA_RUKUM_W_Aathbiskot.kml",
+      "bbox": [
+        82.275271,
+        28.699798,
+        82.700689,
+        28.992489
+      ]
+    },
+    {
+      "district": "RUKUM_W",
+      "municipality": "Banfikot",
+      "type": "Gaunpalika",
+      "wards": 10,
+      "size": 213952,
+      "file": "KA/RUKUM_W/Banfikot/KA_RUKUM_W_Banfikot.kml",
+      "bbox": [
+        82.398741,
+        28.641813,
+        82.616336,
+        28.780466
+      ]
+    },
+    {
+      "district": "RUKUM_W",
+      "municipality": "Chaurjahari",
+      "type": "Nagarpalika",
+      "wards": 14,
+      "size": 197440,
+      "file": "KA/RUKUM_W/Chaurjahari/KA_RUKUM_W_Chaurjahari.kml",
+      "bbox": [
+        82.184124,
+        28.57879,
+        82.356758,
+        28.691996
+      ]
+    },
+    {
+      "district": "RUKUM_W",
+      "municipality": "Musikot",
+      "type": "Nagarpalika",
+      "wards": 14,
+      "size": 245016,
+      "file": "KA/RUKUM_W/Musikot/KA_RUKUM_W_Musikot.kml",
+      "bbox": [
+        82.366828,
+        28.550674,
+        82.581592,
+        28.674112
+      ]
+    },
+    {
+      "district": "RUKUM_W",
+      "municipality": "Sani_Bheri",
+      "type": "Gaunpalika",
+      "wards": 11,
+      "size": 148534,
+      "file": "KA/RUKUM_W/Sani_Bheri/KA_RUKUM_W_Sani_Bheri.kml",
+      "bbox": [
+        82.230069,
+        28.605092,
+        82.421493,
+        28.733576
+      ]
+    },
+    {
+      "district": "RUKUM_W",
+      "municipality": "Tribeni",
+      "type": "Gaunpalika",
+      "wards": 10,
+      "size": 203353,
+      "file": "KA/RUKUM_W/Tribeni/KA_RUKUM_W_Tribeni.kml",
+      "bbox": [
+        82.351823,
+        28.520411,
+        82.495491,
+        28.615284
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Bagchaur",
+      "type": "Nagarpalika",
+      "wards": 12,
+      "size": 278556,
+      "file": "KA/SALYAN/Bagchaur/KA_SALYAN_Bagchaur.kml",
+      "bbox": [
+        82.234046,
+        28.403042,
+        82.418689,
+        28.5414
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Bangad_Kupinde",
+      "type": "Nagarpalika",
+      "wards": 12,
+      "size": 247660,
+      "file": "KA/SALYAN/Bangad_Kupinde/KA_SALYAN_Bangad_Kupinde.kml",
+      "bbox": [
+        81.959797,
+        28.340401,
+        82.145146,
+        28.645107
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Chhatreshwori",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 201136,
+      "file": "KA/SALYAN/Chhatreshwori/KA_SALYAN_Chhatreshwori.kml",
+      "bbox": [
+        82.180824,
+        28.285111,
+        82.383995,
+        28.430581
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Darma",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 156510,
+      "file": "KA/SALYAN/Darma/KA_SALYAN_Darma.kml",
+      "bbox": [
+        82.253922,
+        28.501928,
+        82.382465,
+        28.598063
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Dhorchaur",
+      "type": "Gaunpalika",
+      "wards": 5,
+      "size": 86801,
+      "file": "KA/SALYAN/Dhorchaur/KA_SALYAN_Dhorchaur.kml",
+      "bbox": [
+        82.100902,
+        28.41711,
+        82.27823,
+        28.528901
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Kalimati",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 340313,
+      "file": "KA/SALYAN/Kalimati/KA_SALYAN_Kalimati.kml",
+      "bbox": [
+        81.742817,
+        28.150534,
+        82.151439,
+        28.392758
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Kapurkot",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 185354,
+      "file": "KA/SALYAN/Kapurkot/KA_SALYAN_Kapurkot.kml",
+      "bbox": [
+        82.283487,
+        28.168348,
+        82.437713,
+        28.330559
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Kumakhmalika",
+      "type": "Gaunpalika",
+      "wards": 7,
+      "size": 143253,
+      "file": "KA/SALYAN/Kumakhmalika/KA_SALYAN_Kumakhmalika.kml",
+      "bbox": [
+        82.104501,
+        28.48047,
+        82.281479,
+        28.627019
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Sharada",
+      "type": "Nagarpalika",
+      "wards": 15,
+      "size": 293866,
+      "file": "KA/SALYAN/Sharada/KA_SALYAN_Sharada.kml",
+      "bbox": [
+        82.041221,
+        28.313815,
+        82.276341,
+        28.462469
+      ]
+    },
+    {
+      "district": "SALYAN",
+      "municipality": "Tribeni",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 149219,
+      "file": "KA/SALYAN/Tribeni/KA_SALYAN_Tribeni.kml",
+      "bbox": [
+        82.128089,
+        28.236577,
+        82.335931,
+        28.33594
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Barahtal",
+      "type": "Gaunpalika",
+      "wards": 10,
+      "size": 305516,
+      "file": "KA/SURKHET/Barahtal/KA_SURKHET_Barahtal.kml",
+      "bbox": [
+        81.309629,
+        28.509085,
+        81.616668,
+        28.799036
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Bheriganga",
+      "type": "Nagarpalika",
+      "wards": 13,
+      "size": 319983,
+      "file": "KA/SURKHET/Bheriganga/KA_SURKHET_Bheriganga.kml",
+      "bbox": [
+        81.528732,
+        28.369404,
+        81.836412,
+        28.56966
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Birendranagar",
+      "type": "Nagarpalika",
+      "wards": 16,
+      "size": 283055,
+      "file": "KA/SURKHET/Birendranagar/KA_SURKHET_Birendranagar.kml",
+      "bbox": [
+        81.532553,
+        28.505096,
+        81.776762,
+        28.692672
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Chaukune",
+      "type": "Gaunpalika",
+      "wards": 10,
+      "size": 351726,
+      "file": "KA/SURKHET/Chaukune/KA_SURKHET_Chaukune.kml",
+      "bbox": [
+        80.980439,
+        28.740007,
+        81.352961,
+        28.97877
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Chingad",
+      "type": "Gaunpalika",
+      "wards": 6,
+      "size": 160720,
+      "file": "KA/SURKHET/Chingad/KA_SURKHET_Chingad.kml",
+      "bbox": [
+        81.745116,
+        28.530185,
+        81.919156,
+        28.724533
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Gurbhakot",
+      "type": "Nagarpalika",
+      "wards": 14,
+      "size": 342978,
+      "file": "KA/SURKHET/Gurbhakot/KA_SURKHET_Gurbhakot.kml",
+      "bbox": [
+        81.808321,
+        28.336731,
+        81.990243,
+        28.537508
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Lekbeshi",
+      "type": "Nagarpalika",
+      "wards": 10,
+      "size": 194326,
+      "file": "KA/SURKHET/Lekbeshi/KA_SURKHET_Lekbeshi.kml",
+      "bbox": [
+        81.666665,
+        28.450273,
+        81.849327,
+        28.621239
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Panchpuri",
+      "type": "Nagarpalika",
+      "wards": 11,
+      "size": 298324,
+      "file": "KA/SURKHET/Panchpuri/KA_SURKHET_Panchpuri.kml",
+      "bbox": [
+        81.255369,
+        28.662576,
+        81.523614,
+        28.914635
+      ]
+    },
+    {
+      "district": "SURKHET",
+      "municipality": "Simta",
+      "type": "Gaunpalika",
+      "wards": 9,
+      "size": 243820,
+      "file": "KA/SURKHET/Simta/KA_SURKHET_Simta.kml",
+      "bbox": [
+        81.865956,
+        28.444404,
+        82.040913,
+        28.645697
+      ]
+    }
+  ]
+}
