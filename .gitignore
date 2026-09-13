@@ -1,0 +1,23 @@
+# ── Local-only files ─────────────────────────────────────────────────────────
+# Everything else in this repo is published to GitHub Pages and/or consumed by the
+# GitHub Action, so only genuinely local artefacts belong here.
+
+# Scratch / one-off analysis scripts (safe to keep locally, never needed in CI)
+tools/_*.mjs
+
+# The userscript is loaded by Tampermonkey straight from disk and is NOT needed to
+# serve the data or to run the Action. Uncomment to keep it out of the repo:
+# WME-NP-GIS-Layers.js
+
+# ── Build tooling artefacts ──────────────────────────────────────────────────
+# npm cannot install in this workspace (Google Drive path breaks npm's tar writes),
+# and both generators are deliberately dependency-free.
+node_modules/
+package-lock.json
+package.json
+
+# ── Editor / OS noise ────────────────────────────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp

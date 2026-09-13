@@ -11,6 +11,11 @@
  *                                                    GAPA_NAP_2 and GN_TYPE_12
  *   Nepal_Intl_Boundary/Nepal_Intl_Boudnary.geojson  the national outline, a single Polygon
  *
+ * The national boundary comes from a different source than the local-unit polygons and sits about
+ * 250 m east of them, so it is shifted onto the authoritative border. Measured by nearest-vertex
+ * matching against the local-unit border, -250 m east / +25 m north minimises the mean distance
+ * (150 m, limited by how differently the two datasets generalise the border).
+ *
  * Why these sources: an earlier revision dissolved the WARD layer instead, which produced broken
  * parents (the ward KMLs are a labelling/seam source, not clean topology). The local-unit polygons
  * are authoritative and neighbouring units share bit-identical edges, so dissolving them by edge
@@ -74,6 +79,8 @@ function printUsage() {
 
   --provinces=<dir>   Folder of <PROV>.kml files (default: <repo>/KML_Province)
   --country=<file>    National outline GeoJSON (default: <repo>/Nepal_Intl_Boundary/Nepal_Intl_Boudnary.geojson)
+  --country-north=<m> Shift the national outline north by this many metres (default: 25)
+  --country-east=<m>  Shift the national outline east by this many metres (default: -250)
   --out=<dir>         Output folder (default: <repo>/outlines)
   --simplify=<deg>    Base Douglas-Peucker tolerance in degrees (default 0.0001, 0 disables)
   --precision=<n>     Decimal places for output coordinates (default 6)
@@ -86,6 +93,8 @@ function parseArgs(argv) {
   const opts = {
     provinces: path.join(REPO_ROOT, 'KML_Province'),
     country: path.join(REPO_ROOT, 'Nepal_Intl_Boundary', 'Nepal_Intl_Boudnary.geojson'),
+    countryNorth: 25,   // metres; aligns the national outline with the local-unit border
+    countryEast: -250,  // metres
     out: path.join(REPO_ROOT, 'outlines'),
     simplify: 0.0001,
     precision: 6,
@@ -99,6 +108,8 @@ function parseArgs(argv) {
     else if (arg === '-h' || arg === '--help') { printUsage(); process.exit(0); }
     else if (arg.startsWith('--provinces=')) opts.provinces = path.resolve(REPO_ROOT, arg.slice(12));
     else if (arg.startsWith('--country=')) opts.country = path.resolve(REPO_ROOT, arg.slice(10));
+    else if (arg.startsWith('--country-north=')) opts.countryNorth = Number(arg.slice(16));
+    else if (arg.startsWith('--country-east=')) opts.countryEast = Number(arg.slice(15));
     else if (arg.startsWith('--out=')) opts.out = path.resolve(REPO_ROOT, arg.slice(6));
     else if (arg.startsWith('--simplify=')) opts.simplify = Number(arg.slice(11));
     else if (arg.startsWith('--precision=')) opts.precision = Number(arg.slice(12));
@@ -106,6 +117,7 @@ function parseArgs(argv) {
   }
 
   if (!Number.isFinite(opts.simplify) || opts.simplify < 0) { console.error('--simplify must be >= 0'); process.exit(2); }
+  if (!Number.isFinite(opts.countryNorth) || !Number.isFinite(opts.countryEast)) { console.error('--country-north / --country-east must be numbers'); process.exit(2); }
   if (!Number.isInteger(opts.precision) || opts.precision < 0 || opts.precision > 12) { console.error('--precision must be an integer 0-12'); process.exit(2); }
   return opts;
 }
@@ -442,6 +454,27 @@ function ringTolerance(ring, base) {
   return Math.min(base, Math.hypot(maxLon - minLon, maxLat - minLat) * 0.05);
 }
 
+/**
+ * Shifts a polygon set by a metric offset, converted at its mean latitude.
+ * The national boundary GeoJSON is a different source from the local-unit polygons and sits east of
+ * them, so this nudges it onto the authoritative border (see the --country-north/--country-east
+ * defaults for the measured best fit).
+ */
+function offsetPolygons(polygons, northMeters, eastMeters) {
+  if (northMeters === 0 && eastMeters === 0) return polygons;
+
+  let sumLat = 0;
+  let count = 0;
+  for (const rings of polygons) for (const ring of rings) for (const [, lat] of ring) { sumLat += lat; count++; }
+  const meanLat = count > 0 ? sumLat / count : 27.7;
+
+  const dLat = northMeters / 111320;
+  const dLon = eastMeters / (111320 * Math.cos((meanLat * Math.PI) / 180));
+
+  return polygons.map((rings) => rings.map((ring) =>
+    ring.map(([lon, lat]) => [snap(lon + dLon), snap(lat + dLat)])));
+}
+
 const roundCoord = (value, precision) => Number(value.toFixed(precision));
 
 function roundGeometry(polygons, precision) {
@@ -645,13 +678,14 @@ async function main() {
     if (countryPolygons.length === 0) {
       warnings.push('country outline contained no polygons');
     } else {
-      const geometry = finish(countryPolygons, 'country', 'country');
+      const geometry = finish(offsetPolygons(countryPolygons, opts.countryNorth, opts.countryEast), 'country', 'country');
       const feature = featureOf(geometry, {
         level: 'country', iso: 'NPL', name: 'Nepal',
         bbox: bboxOfPolygons(geometry, opts.precision),
       });
+      log(`  national outline shifted ${opts.countryNorth} m north / ${opts.countryEast} m east`);
       await writeCollection(path.join(opts.out, 'country.json'),
-        { schema: SCHEMA, count: 1, features: [feature] }, 'country.json');
+        { schema: SCHEMA, count: 1, offset: { northMeters: opts.countryNorth, eastMeters: opts.countryEast }, features: [feature] }, 'country.json');
     }
   }
 
