@@ -2,19 +2,21 @@
 /**
  * tools/build-kml-manifest.mjs
  *
- * Walks KML_Nepal/ and writes the two-tier bounding-box manifests consumed by
- * WME-NP-GIS-Layers.js, so only the KML layers intersecting the map viewport are loaded:
+ * Walks KML_Wards/ and writes the two-tier bounding-box manifests consumed by
+ * WME-NP-GIS-Layers.js, so only the KML layers intersecting the map viewport are loaded.
+ * This covers the WARD level only — the country / province / district / municipality
+ * levels are served from the precomputed outlines/ tree (tools/build-kml-outlines.mjs):
  *
- *   KML_Nepal/index.json          -> province tier (tiny, always fetched)
- *   KML_Nepal/<PROV>/index.json   -> municipality tier (fetched only when that province is in view)
+ *   KML_Wards/index.json          -> province tier (tiny, always fetched)
+ *   KML_Wards/<PROV>/index.json   -> municipality tier (fetched only when that province is in view)
  *
- * Layout assumed: KML_Nepal/<PROV>/<DISTRICT>/<Municipality>/<PROV>_<DISTRICT>_<Municipality>.kml
+ * Layout assumed: KML_Wards/<PROV>/<DISTRICT>/<Municipality>/<PROV>_<DISTRICT>_<Municipality>.kml
  *
  * Zero dependencies.
  *
  *   node tools/build-kml-manifest.mjs
  *   node tools/build-kml-manifest.mjs --check
- *   node tools/build-kml-manifest.mjs --root=KML_Nepal --pad=0.001 --precision=6 --quiet
+ *   node tools/build-kml-manifest.mjs --root=KML_Wards --pad=0.001 --precision=6 --quiet
  */
 
 import { readdir, readFile, stat, writeFile, mkdir } from 'node:fs/promises';
@@ -46,7 +48,7 @@ const SCHEMA = 1;
 function printUsage() {
   console.log(`Usage: node tools/build-kml-manifest.mjs [options]
 
-  --root=<dir>      KML root folder (default: <repo>/KML_Nepal)
+  --root=<dir>      KML root folder (default: <repo>/KML_Wards)
   --pad=<deg>       Expand each bbox by this many degrees (default: 0.0005)
   --precision=<n>   Decimal places for bbox values (default: 6)
   --check           Do not write; exit 1 if any manifest is missing or stale
@@ -56,7 +58,7 @@ function printUsage() {
 
 function parseArgs(argv) {
   const opts = {
-    root: path.join(REPO_ROOT, 'KML_Nepal'),
+    root: path.join(REPO_ROOT, 'KML_Wards'),
     pad: 0.0005,
     precision: 6,
     check: false,
@@ -316,7 +318,7 @@ async function main() {
 
   const rootManifest = serialize({
     schema: SCHEMA,
-    source: 'KML_Nepal',
+    source: 'KML_Wards',
     bboxOrder: ['minLon', 'minLat', 'maxLon', 'maxLat'],
     counts: {
       provinces: Object.keys(provinces).length,

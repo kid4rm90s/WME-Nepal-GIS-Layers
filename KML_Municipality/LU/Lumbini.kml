@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Lumbini" id="Lumbini">
+	<SimpleField name="id" type="string"></SimpleField>
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+	<SimpleField name="OBJECTID_1" type="int"></SimpleField>
+	<SimpleField name="OBJECTID" type="int"></SimpleField>
+	<SimpleField name="District_2" type="string"></SimpleField>
+	<SimpleField name="Local_leve" type="string"></SimpleField>
+	<SimpleField name="स्थ" type="string"></SimpleField>
+	<SimpleField name="PROVINCE_2" type="int"></SimpleField>
+	<SimpleField name="DISTRICT_3" type="string"></SimpleField>
+	<SimpleField name="GAPA_NAP_2" type="string"></SimpleField>
+	<SimpleField name="GN_TYPE_12" type="string"></SimpleField>
+	<SimpleField name="GAPANAPA_1" type="string"></SimpleField>
+	<SimpleField name="GN_TYPE_13" type="string"></SimpleField>
+	<SimpleField name="Changed_Na" type="string"></SimpleField>
+	<SimpleField name="Old_LL_Na" type="string"></SimpleField>
+	<SimpleField name="Code" type="int"></SimpleField>
+	<SimpleField name="Shape_Leng" type="float"></SimpleField>
+	<SimpleField name="Shape_Area" type="float"></SimpleField>
+</Schema>
+<Folder><name>Lumbini</name>
+  <Placemark id="Lumbini.1">
+	<name>Lumbini Sanskritik Development Area</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Lumbini">
+		<SimpleData name="id">0</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">0</SimpleData>
+		<SimpleData name="OBJECTID_1">767</SimpleData>
+		<SimpleData name="OBJECTID">527</SimpleData>
+		<SimpleData name="District_2"></SimpleData>
+		<SimpleData name="Local_leve"></SimpleData>
+		<SimpleData name="स्थ"></SimpleData>
+		<SimpleData name="PROVINCE_2">5</SimpleData>
+		<SimpleData name="DISTRICT_3">RUPANDEHI</SimpleData>
+		<SimpleData name="GAPA_NAP_2">Lumbini Sanskritik Development Area</SimpleData>
+		<SimpleData name="GN_TYPE_12">Development Area</SimpleData>
+		<SimpleData name="GAPANAPA_1">Lumbini Sanskritik Development Area Development Ar</SimpleData>
+		<SimpleData name="GN_TYPE_13">Development Area</SimpleData>
+		<SimpleData name="Changed_Na"></SimpleData>
+		<SimpleData name="Old_LL_Na"></SimpleData>
+		<SimpleData name="Code">0</SimpleData>
+		<SimpleData name="Shape_Leng">0.118966505144</SimpleData>
+		<SimpleData name="Shape_Area">0.00071760394673</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>83.2838285305171,27.49387306908 83.2839694675469,27.5003722560019 83.2839770299821,27.5032221933291 83.2840752804867,27.5052534433019 83.2838905930286,27.5058346932111 83.2836290923082,27.5061605056582 83.2683435930574,27.506241506184 83.2676524679513,27.5058497551289 83.2675730925082,27.5053123186009 83.2675364053891,27.5034911926326 83.2675137180832,27.5032360690354 83.267472905754,27.5003725060147 83.2673742172776,27.494514318446 83.2671567178976,27.4819335683771 83.2671554048811,27.4818478185088 83.2672111550209,27.4816405057984 83.2671720927809,27.4795553807812 83.2671685305492,27.479370318304 83.2671255301591,27.4793723813586 83.267167405492,27.4792552557926 83.2671640303202,27.4788535680807 83.2670402803163,27.4712442563083 83.2669050306264,27.462942130495 83.2672677172525,27.4625468810604 83.2805671549816,27.462512194043 83.2825327172584,27.4625065058038 83.2831179053177,27.4631616308762 83.2832317177654,27.463457755661 83.2833334054952,27.4672107560403 83.283338717816,27.4672242558281 83.2832963424576,27.4672737556498 83.2834047175782,27.4705731933745 83.2834075927246,27.4706635055253 83.2834421556349,27.4706546309729 83.2833999682358,27.4707221308114 83.283544155431,27.476467755996 83.2836411549725,27.4784922565246 83.2836434059864,27.4785373811235 83.2838285305171,27.49387306908</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>

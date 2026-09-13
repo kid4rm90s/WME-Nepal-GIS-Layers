@@ -4,7 +4,9 @@ on:
   push:
     branches: [Main]
     paths:
-      - 'KML_Nepal/**'
+      - 'KML_Wards/**'
+      - 'KML_Province/**'
+      - 'Nepal_Intl_Boundary/**'
       - 'tools/build-kml-manifest.mjs'
       - 'tools/build-kml-outlines.mjs'
       - '.github/workflows/build-kml-manifest.yml'
@@ -19,7 +21,7 @@ concurrency:
 
 jobs:
   build:
-    # Guard: the commit-back push below also matches KML_Nepal/** — don't re-trigger.
+    # Guard: the commit-back push below also matches the source paths — don't re-trigger.
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -29,10 +31,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate manifests
+      - name: Generate ward manifests
         run: node tools/build-kml-manifest.mjs
 
-      - name: Generate dissolved outlines
+      - name: Generate parent outlines
         run: node tools/build-kml-outlines.mjs
 
       - name: Verify generators are idempotent
@@ -45,8 +47,8 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name  "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add KML_Nepal
-            git commit -m "chore: rebuild KML viewport manifests and outlines"
+            git add KML_Wards outlines
+            git commit -m "chore: rebuild KML ward manifests and parent outlines"
             git push
           else
             echo "Manifests and outlines already up to date."

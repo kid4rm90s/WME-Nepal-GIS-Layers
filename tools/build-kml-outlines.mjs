@@ -2,33 +2,34 @@
 /**
  * tools/build-kml-outlines.mjs
  *
- * Builds dissolved (union) outline GeoJSON for the three parent administrative levels,
- * so Province / District / Municipality can be drawn as clean boundary lines.
+ * Builds the parent-level outlines (country / province / district / municipality) served to the
+ * userscript from GitHub Pages.
  *
- * Why this is needed: every KML in KML_Nepal/ is ONE municipality whose wards are separate
- * <Polygon> Placemarks that tile the municipality. Stroking those polygons directly would
- * draw every internal ward line, so the parent levels need a real dissolve.
+ * Sources
+ *   KML_Province/<PROV>.kml                          one file per province; one <Placemark> per local
+ *                                                    unit (774 in total) carrying DISTRICT_3,
+ *                                                    GAPA_NAP_2 and GN_TYPE_12
+ *   Nepal_Intl_Boundary/Nepal_Intl_Boudnary.geojson  the national outline, a single Polygon
  *
- * Zero dependencies. The dissolve is done by EDGE CANCELLATION: neighbouring units come from
- * the same source dataset, so a shared border appears as the same vertex pair in opposite
- * directions inside the two polygons. Cancelling those pairs leaves exactly the boundary
- * edges, which are then chained into closed rings (measured: 95.7% of the edges of a whole
- * province cancel out, i.e. only ~4% of edges are real boundary).
+ * Why these sources: an earlier revision dissolved the WARD layer instead, which produced broken
+ * parents (the ward KMLs are a labelling/seam source, not clean topology). The local-unit polygons
+ * are authoritative and neighbouring units share bit-identical edges, so dissolving them by edge
+ * cancellation is exact — measured 0 unclosed rings and exactly one shell per district and province.
  *
- * Hierarchy is built bottom-up so each level reuses the previous one:
- *   wards        -> municipality outline   (per owner)
- *   municipalities -> district outline     (per district)
- *   districts    -> province outline       (per province)
+ *   municipality -> the unit's own polygons (dissolved against themselves, to drop the seams of
+ *                   units that arrive split over several Placemarks)
+ *   district     -> dissolve of its municipalities
+ *   province     -> dissolve of its municipalities (equivalent to dissolving its districts)
+ *   country      -> the boundary GeoJSON, as-is
  *
- * Output (default KML_Nepal/outlines/) — 78 files:
- *   province.json              FeatureCollection, one feature per province (7)
- *   <PROV>-<DISTRICT>.json     the district's own outline + all of its municipalities
+ * Output (default <repo>/outlines — 79 files)
+ *   country.json             1 feature  (level: country)
+ *   province.json            7 features (level: province)
+ *   <PROV>-<DISTRICT>.json   that district's outline + every municipality inside it
  *
- * One file per district serves both parent levels below the province, so the client only ever
- * downloads the handful of districts that are actually in view.
- *
- * Every feature carries a bbox property ([minLon, minLat, maxLon, maxLat]) so the userscript
- * can test features against the map viewport without extra fetches.
+ * One file per district serves both the district and the municipality level, so the userscript only
+ * downloads the handful of districts that are actually in view. Every feature carries a bbox
+ * property ([minLon, minLat, maxLon, maxLat]) for client-side viewport tests.
  *
  * Usage:
  *   node tools/build-kml-outlines.mjs
@@ -54,22 +55,28 @@ const PROVINCES = {
   SU: { npp: 'NPP7', name: 'Sudurpashchim' },
 };
 
-const SCHEMA = 1;
-const SNAP_DECIMALS = 6; // ~0.11 m grid; guarantees shared borders hash to the same key
+const SCHEMA = 2;                 // 2 = local-unit based outlines (1 was ward-dissolved)
+const SNAP_DECIMALS = 6;          // ~0.11 m grid; guarantees shared borders hash to the same key
 
-// Coarse levels can afford a coarser outline: they are only ever drawn zoomed out.
-const SIMPLIFY_FACTOR = { municipality: 1, district: 2, province: 4 };
-const ORIGINAL_VERTEX_FLOOR = 12; // warn when simplification leaves less than this
+// Coarser levels can afford a coarser outline: they are only ever drawn zoomed out. District and
+// municipality share a tolerance because they are drawn together — differing tolerances would let a
+// district line drift from the municipality lines that make it up.
+const SIMPLIFY_FACTOR = { municipality: 1, district: 1, province: 2, country: 4 };
+
+// Edge cancellation is only exact when both units carry the identical border vertex pair. A larger
+// relative area difference than this means the source polygons were not topologically clean.
+const AREA_TOLERANCE = 0.0005;    // 0.05%
 
 // ─────────────────────────────────────────────── args
 
 function printUsage() {
   console.log(`Usage: node tools/build-kml-outlines.mjs [options]
 
-  --root=<dir>        KML root folder (default: <repo>/KML_Nepal)
-  --out=<dir>         Output folder (default: <root>/outlines)
-  --simplify=<deg>    Douglas-Peucker tolerance in degrees (default: 0.0001, 0 disables)
-  --precision=<n>     Decimal places for output coordinates (default: 6)
+  --provinces=<dir>   Folder of <PROV>.kml files (default: <repo>/KML_Province)
+  --country=<file>    National outline GeoJSON (default: <repo>/Nepal_Intl_Boundary/Nepal_Intl_Boudnary.geojson)
+  --out=<dir>         Output folder (default: <repo>/outlines)
+  --simplify=<deg>    Base Douglas-Peucker tolerance in degrees (default 0.0001, 0 disables)
+  --precision=<n>     Decimal places for output coordinates (default 6)
   --check             Do not write; exit 1 if any output is missing or stale
   --quiet             Only print warnings and the final summary
   -h, --help          Show this help`);
@@ -77,8 +84,9 @@ function printUsage() {
 
 function parseArgs(argv) {
   const opts = {
-    root: path.join(REPO_ROOT, 'KML_Nepal'),
-    out: null,
+    provinces: path.join(REPO_ROOT, 'KML_Province'),
+    country: path.join(REPO_ROOT, 'Nepal_Intl_Boundary', 'Nepal_Intl_Boudnary.geojson'),
+    out: path.join(REPO_ROOT, 'outlines'),
     simplify: 0.0001,
     precision: 6,
     check: false,
@@ -89,14 +97,14 @@ function parseArgs(argv) {
     if (arg === '--check') opts.check = true;
     else if (arg === '--quiet') opts.quiet = true;
     else if (arg === '-h' || arg === '--help') { printUsage(); process.exit(0); }
-    else if (arg.startsWith('--root=')) opts.root = path.resolve(REPO_ROOT, arg.slice(7));
+    else if (arg.startsWith('--provinces=')) opts.provinces = path.resolve(REPO_ROOT, arg.slice(12));
+    else if (arg.startsWith('--country=')) opts.country = path.resolve(REPO_ROOT, arg.slice(10));
     else if (arg.startsWith('--out=')) opts.out = path.resolve(REPO_ROOT, arg.slice(6));
     else if (arg.startsWith('--simplify=')) opts.simplify = Number(arg.slice(11));
     else if (arg.startsWith('--precision=')) opts.precision = Number(arg.slice(12));
     else { console.error(`Unknown option: ${arg}\n`); printUsage(); process.exit(2); }
   }
 
-  if (!opts.out) opts.out = path.join(opts.root, 'outlines');
   if (!Number.isFinite(opts.simplify) || opts.simplify < 0) { console.error('--simplify must be >= 0'); process.exit(2); }
   if (!Number.isInteger(opts.precision) || opts.precision < 0 || opts.precision > 12) { console.error('--precision must be an integer 0-12'); process.exit(2); }
   return opts;
@@ -116,6 +124,10 @@ function signedArea(ring) {
   return area / 2;
 }
 
+/** Net area of a polygon set (shells positive, holes negative). */
+const netArea = (polygons) =>
+  polygons.reduce((sum, rings) => sum + rings.reduce((ringSum, ring) => ringSum + signedArea(ring), 0), 0);
+
 /** Ray casting. */
 function pointInRing(point, ring) {
   const [x, y] = point;
@@ -128,65 +140,127 @@ function pointInRing(point, ring) {
   return inside;
 }
 
-/** Extracts every <Polygon> of a KML as [shell, ...holes], with shells CCW and holes CW. */
-function parseKmlPolygons(text) {
-  const polygons = [];
-  const polyRe = /<Polygon\b[^>]*>([\s\S]*?)<\/Polygon>/gi;
-  let polyMatch;
-
-  while ((polyMatch = polyRe.exec(text)) !== null) {
-    const rings = [];
-    const ringRe = /<LinearRing\b[^>]*>([\s\S]*?)<\/LinearRing>/gi;
-    let ringMatch;
-
-    while ((ringMatch = ringRe.exec(polyMatch[1])) !== null) {
-      const coordsMatch = /<coordinates\b[^>]*>([\s\S]*?)<\/coordinates>/i.exec(ringMatch[1]);
-      if (!coordsMatch) continue;
-
-      const ring = [];
-      for (const tuple of coordsMatch[1].trim().split(/\s+/)) {
-        if (!tuple) continue;
-        const comma = tuple.indexOf(',');
-        if (comma === -1) continue;
-        const lon = Number(tuple.slice(0, comma));
-        const lat = Number(tuple.slice(comma + 1).split(',')[0]);
-        if (!Number.isFinite(lon) || !Number.isFinite(lat)) continue;
-        ring.push([snap(lon), snap(lat)]);
-      }
-
-      // drop duplicated consecutive vertices, then ensure closure
-      const cleaned = ring.filter((p, i) => i === 0 || p[0] !== ring[i - 1][0] || p[1] !== ring[i - 1][1]);
-      if (cleaned.length >= 3) {
-        if (cleaned[0][0] !== cleaned[cleaned.length - 1][0] || cleaned[0][1] !== cleaned[cleaned.length - 1][1]) {
-          cleaned.push([cleaned[0][0], cleaned[0][1]]);
-        }
-        if (cleaned.length >= 4) rings.push(cleaned);
-      }
-    }
-
-    if (rings.length === 0) continue;
-
-    // Largest ring is the shell regardless of element order; the rest are holes.
-    rings.sort((a, b) => Math.abs(signedArea(b)) - Math.abs(signedArea(a)));
-    const normalised = rings.map((ring, index) => {
-      const isShell = index === 0;
-      const ccw = signedArea(ring) > 0;
-      return ccw === isShell ? ring : ring.slice().reverse();
-    });
-    polygons.push(normalised);
+/** Parses a KML <coordinates> payload into a cleaned, closed ring of [lon, lat]. */
+function parseRing(coordText) {
+  const ring = [];
+  for (const tuple of coordText.trim().split(/\s+/)) {
+    if (!tuple) continue;
+    const comma = tuple.indexOf(',');
+    if (comma === -1) continue;
+    const lon = Number(tuple.slice(0, comma));
+    const lat = Number(tuple.slice(comma + 1).split(',')[0]);
+    if (!Number.isFinite(lon) || !Number.isFinite(lat)) continue;
+    ring.push([snap(lon), snap(lat)]);
   }
 
-  return polygons;
+  const cleaned = ring.filter((p, i) => i === 0 || p[0] !== ring[i - 1][0] || p[1] !== ring[i - 1][1]);
+  if (cleaned.length < 3) return null;
+  if (cleaned[0][0] !== cleaned[cleaned.length - 1][0] || cleaned[0][1] !== cleaned[cleaned.length - 1][1]) {
+    cleaned.push([cleaned[0][0], cleaned[0][1]]);
+  }
+  return cleaned.length >= 4 ? cleaned : null;
+}
+
+/** Normalises rings into [shell, ...holes] with the shell CCW and the holes CW. */
+function normaliseRings(rings) {
+  if (rings.length === 0) return null;
+  // The largest ring is the shell regardless of element order; the rest are holes.
+  rings.sort((a, b) => Math.abs(signedArea(b)) - Math.abs(signedArea(a)));
+  return rings.map((ring, index) => {
+    const isShell = index === 0;
+    const ccw = signedArea(ring) > 0;
+    return ccw === isShell ? ring : ring.slice().reverse();
+  });
+}
+
+/**
+ * Extracts the local units of one KML_Province file.
+ * @returns {{ attrs: Record<string,string>, polygons: number[][][] }[]} one entry per <Placemark>
+ */
+function parseProvinceKml(text) {
+  const units = [];
+  const placemarkRe = /<Placemark\b[^>]*>([\s\S]*?)<\/Placemark>/gi;
+  let placemarkMatch;
+
+  while ((placemarkMatch = placemarkRe.exec(text)) !== null) {
+    const body = placemarkMatch[1];
+    const attrs = {};
+    for (const [, name, value] of body.matchAll(/<SimpleData\s+name="([^"]+)"\s*>([\s\S]*?)<\/SimpleData>/gi)) {
+      attrs[name] = value.trim();
+    }
+
+    const polygons = [];
+    const polygonRe = /<Polygon\b[^>]*>([\s\S]*?)<\/Polygon>/gi;
+    let polygonMatch;
+
+    while ((polygonMatch = polygonRe.exec(body)) !== null) {
+      const rings = [];
+      const ringRe = /<LinearRing\b[^>]*>([\s\S]*?)<\/LinearRing>/gi;
+      let ringMatch;
+
+      while ((ringMatch = ringRe.exec(polygonMatch[1])) !== null) {
+        const coords = /<coordinates\b[^>]*>([\s\S]*?)<\/coordinates>/i.exec(ringMatch[1]);
+        if (!coords) continue;
+        const ring = parseRing(coords[1]);
+        if (ring) rings.push(ring);
+      }
+
+      const normalised = normaliseRings(rings);
+      if (normalised) polygons.push(normalised);
+    }
+
+    units.push({ attrs, polygons });
+  }
+
+  return units;
+}
+
+/** Extracts polygons from any GeoJSON Feature / FeatureCollection / geometry object. */
+function parseGeoJsonPolygons(node, out = []) {
+  if (!node) return out;
+
+  if (node.type === 'FeatureCollection') {
+    for (const feature of node.features ?? []) parseGeoJsonPolygons(feature, out);
+    return out;
+  }
+  if (node.type === 'Feature') return parseGeoJsonPolygons(node.geometry, out);
+
+  if (node.type === 'Polygon' || node.type === 'MultiPolygon') {
+    const raw = node.type === 'Polygon' ? [node.coordinates] : node.coordinates;
+    for (const polygon of raw) {
+      const rings = [];
+      for (const ring of polygon) {
+        const parsed = [];
+        for (const position of ring) {
+          const lon = Number(position[0]);
+          const lat = Number(position[1]);
+          if (!Number.isFinite(lon) || !Number.isFinite(lat)) continue;
+          parsed.push([snap(lon), snap(lat)]);
+        }
+        const cleaned = parsed.filter((p, i) => i === 0 || p[0] !== parsed[i - 1][0] || p[1] !== parsed[i - 1][1]);
+        if (cleaned.length >= 3) {
+          if (cleaned[0][0] !== cleaned[cleaned.length - 1][0] || cleaned[0][1] !== cleaned[cleaned.length - 1][1]) {
+            cleaned.push([cleaned[0][0], cleaned[0][1]]);
+          }
+          if (cleaned.length >= 4) rings.push(cleaned);
+        }
+      }
+      const normalised = normaliseRings(rings);
+      if (normalised) out.push(normalised);
+    }
+  }
+
+  return out;
 }
 
 /**
  * Cancels shared edges between all polygons of a group and chains the remainder into rings.
- * @returns {{ polygons: number[][][], kept: number, cancelled: number, open: number }}
+ * @returns {{ rings: number[][][], cancelled: number, totalEdges: number, open: number }}
  */
 function dissolve(polygons) {
   const edgeCount = new Map();
   const points = new Map();
-  let total = 0;
+  let totalEdges = 0;
 
   for (const rings of polygons) {
     for (const ring of rings) {
@@ -200,7 +274,7 @@ function dissolve(polygons) {
         points.set(kb, b);
         const key = `${ka}|${kb}`;
         edgeCount.set(key, (edgeCount.get(key) || 0) + 1);
-        total++;
+        totalEdges++;
       }
     }
   }
@@ -220,17 +294,14 @@ function dissolve(polygons) {
   }
 
   let cancelled = 0;
-  let kept = 0;
   for (const pair of pairs) {
     const [a, b] = pair.split('|');
     const ab = edgeCount.get(`${a}|${b}`) || 0;
     const ba = edgeCount.get(`${b}|${a}`) || 0;
     const drop = Math.min(ab, ba);
     cancelled += drop * 2;
-    const remainAB = ab - drop;
-    const remainBA = ba - drop;
-    if (remainAB > 0) { pushEdge(a, b, remainAB); kept += remainAB; }
-    if (remainBA > 0) { pushEdge(b, a, remainBA); kept += remainBA; }
+    if (ab - drop > 0) pushEdge(a, b, ab - drop);
+    if (ba - drop > 0) pushEdge(b, a, ba - drop);
   }
 
   /** Picks the most clockwise (sharpest right) continuation, keeping the interior on the left. */
@@ -284,7 +355,7 @@ function dissolve(polygons) {
     }
   }
 
-  return { rings, kept, cancelled, open };
+  return { rings, cancelled, totalEdges, open };
 }
 
 /** Groups traced rings into polygons (shells with their holes). */
@@ -357,8 +428,8 @@ function simplifyRing(ring, tolerance) {
 }
 
 /**
- * Small islands and riverine slivers would be flattened away by the tolerance used for the
- * main boundary, so scale the tolerance down for short rings (~5% of their own size).
+ * Small islands and riverine slivers would be flattened away by the tolerance used for the main
+ * boundary, so scale the tolerance down for short rings (~5% of their own size).
  */
 function ringTolerance(ring, base) {
   let minLon = Infinity, minLat = Infinity, maxLon = -Infinity, maxLat = -Infinity;
@@ -392,9 +463,6 @@ function bboxOfPolygons(polygons, precision) {
   return [roundCoord(minLon, precision), roundCoord(minLat, precision), roundCoord(maxLon, precision), roundCoord(maxLat, precision)];
 }
 
-const countVertices = (polygons) =>
-  polygons.reduce((sum, rings) => sum + rings.reduce((ringSum, ring) => ringSum + ring.length, 0), 0);
-
 function featureOf(polygons, properties) {
   return {
     type: 'Feature',
@@ -404,6 +472,9 @@ function featureOf(polygons, properties) {
       : { type: 'MultiPolygon', coordinates: polygons },
   };
 }
+
+const vertexCountOf = (polygons) =>
+  polygons.reduce((sum, rings) => sum + rings.reduce((ringSum, ring) => ringSum + ring.length, 0), 0);
 
 // ─────────────────────────────────────────────── io
 
@@ -429,16 +500,6 @@ async function writeOrCompare(file, contents, check) {
   return true;
 }
 
-async function walk(dir, out = []) {
-  const entries = await readdir(dir, { withFileTypes: true });
-  for (const entry of entries) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) await walk(full, out);
-    else if (entry.isFile() && entry.name.toLowerCase().endsWith('.kml')) out.push(full);
-  }
-  return out;
-}
-
 const toPosix = (value) => value.split(path.sep).join('/');
 
 // ─────────────────────────────────────────────── main
@@ -449,92 +510,62 @@ async function main() {
   const warnings = [];
   const stale = [];
 
-  if (!existsSync(opts.root)) {
-    console.error(`KML root not found: ${opts.root}`);
+  if (!existsSync(opts.provinces)) {
+    console.error(`Province folder not found: ${opts.provinces}`);
     process.exit(2);
   }
 
-  const files = (await walk(opts.root)).sort();
-  log(`Scanning ${toPosix(path.relative(REPO_ROOT, opts.root))}/ — ${files.length} .kml file(s)`);
+  // ── read every province file and group its local units
+  /** @type {Map<string, {name:string, type:string, code:string, district:string, polygons:number[][][]}>} */
+  const units = new Map();       // "PROV|DISTRICT|NAME" -> unit
+  const districtsOf = new Map(); // "PROV|DISTRICT" -> Set of unit keys
+  const unitsOf = new Map();     // provKey -> unit keys
+  let placemarkCount = 0;
 
-  /** @type {Map<string, {province:string, district:string, municipality:string, files:string[]}>} */
-  const byMunicipality = new Map();
-  for (const file of files) {
-    const parts = toPosix(path.relative(opts.root, file)).split('/');
-    if (parts.length !== 4) continue;
-    const key = `${parts[0]}|${parts[1]}|${parts[2]}`;
-    if (!byMunicipality.has(key)) {
-      byMunicipality.set(key, { province: parts[0], district: parts[1], municipality: parts[2], files: [] });
+  for (const provKey of Object.keys(PROVINCES)) {
+    const file = path.join(opts.provinces, `${provKey}.kml`);
+    if (!existsSync(file)) { warnings.push(`missing province file ${provKey}.kml`); continue; }
+
+    const text = await readFile(file, 'utf8');
+    const placemarks = parseProvinceKml(text);
+    placemarkCount += placemarks.length;
+    unitsOf.set(provKey, []);
+
+    for (const placemark of placemarks) {
+      if (placemark.polygons.length === 0) { warnings.push(`${provKey}: a placemark has no polygon`); continue; }
+
+      const district = placemark.attrs.DISTRICT_3 || placemark.attrs.District_2 || '';
+      const name = placemark.attrs.GAPA_NAP_2 || placemark.attrs.GAPANAPA_1 || '';
+      if (!name) { warnings.push(`${provKey}: a placemark has no municipality name`); continue; }
+      if (!district) warnings.push(`${provKey}: "${name}" has no district — grouped under UNKNOWN`);
+
+      const districtKey = district || 'UNKNOWN';
+      const unitKey = `${provKey}|${districtKey}|${name}`;
+
+      // A unit split over several Placemarks (or listed twice) is merged into one unit.
+      let unit = units.get(unitKey);
+      if (!unit) {
+        unit = {
+          name,
+          type: placemark.attrs.GN_TYPE_13 || placemark.attrs.GN_TYPE_12 || '',
+          code: placemark.attrs.Code || '',
+          district: districtKey,
+          polygons: [],
+        };
+        units.set(unitKey, unit);
+        unitsOf.get(provKey).push(unitKey);
+      }
+      unit.polygons.push(...placemark.polygons);
+
+      const districtId = `${provKey}|${districtKey}`;
+      if (!districtsOf.has(districtId)) districtsOf.set(districtId, new Set());
+      districtsOf.get(districtId).add(unitKey);
     }
-    byMunicipality.get(key).files.push(file);
   }
 
-  // ── level 1: municipality outlines (wards dissolved)
-  /** @type {Map<string, {polygons:number[][][], entry:any}>} */
-  const municipalities = new Map();
-  let wardCount = 0;
+  log(`Parsed ${toPosix(path.relative(REPO_ROOT, opts.provinces))}/ — ${placemarkCount} placemark(s) -> ${units.size} local unit(s) in ${districtsOf.size} district(s)`);
 
-  for (const [key, entry] of byMunicipality) {
-    const polygons = [];
-    for (const file of entry.files) {
-      polygons.push(...parseKmlPolygons(await readFile(file, 'utf8')));
-    }
-    if (polygons.length === 0) { warnings.push(`no polygons parsed for ${key}`); continue; }
-    wardCount += polygons.length;
-
-    const { rings, kept, cancelled, open } = dissolve(polygons);
-    if (open > 0) warnings.push(`${key}: ${open} unclosed ring(s) while dissolving wards`);
-    if (kept === 0) { warnings.push(`${key}: dissolve produced no edges`); continue; }
-
-    const dissolved = ringsToPolygons(rings);
-    if (dissolved.length === 0) { warnings.push(`${key}: dissolve produced no polygons`); continue; }
-    municipalities.set(key, { polygons: dissolved, entry });
-  }
-
-  log(`  municipalities dissolved: ${municipalities.size} (from ${wardCount} ward polygons)`);
-
-  // ── level 2: district outlines (municipalities dissolved)
-  /** @type {Map<string, {province:string, district:string, polygons:number[][][], municipalities:any[]}>} */
-  const districts = new Map();
-  for (const { polygons, entry } of municipalities.values()) {
-    const key = `${entry.province}|${entry.district}`;
-    if (!districts.has(key)) {
-      districts.set(key, { province: entry.province, district: entry.district, polygons: [], municipalities: [] });
-    }
-    districts.get(key).polygons.push(...polygons);
-    districts.get(key).municipalities.push(entry);
-  }
-
-  const districtOutlines = new Map();
-  for (const [key, group] of districts) {
-    const { rings, open } = dissolve(group.polygons);
-    if (open > 0) warnings.push(`${key}: ${open} unclosed ring(s) while dissolving municipalities`);
-    const dissolved = ringsToPolygons(rings);
-    if (dissolved.length === 0) { warnings.push(`${key}: no district outline produced`); continue; }
-    districtOutlines.set(key, { province: group.province, district: group.district, polygons: dissolved });
-  }
-  log(`  districts dissolved: ${districtOutlines.size}`);
-
-  // ── level 3: province outlines (districts dissolved)
-  const provinceOutlines = new Map();
-  for (const group of districtOutlines.values()) {
-    if (!provinceOutlines.has(group.province)) provinceOutlines.set(group.province, { provinces: [], polygons: [] });
-    const bucket = provinceOutlines.get(group.province);
-    bucket.polygons.push(...group.polygons);
-    bucket.provinces.push(group.district);
-  }
-
-  const finalProvinces = new Map();
-  for (const [provinceKey, group] of provinceOutlines) {
-    const { rings, open } = dissolve(group.polygons);
-    if (open > 0) warnings.push(`${provinceKey}: ${open} unclosed ring(s) while dissolving districts`);
-    const dissolved = ringsToPolygons(rings);
-    if (dissolved.length === 0) { warnings.push(`${provinceKey}: no province outline produced`); continue; }
-    finalProvinces.set(provinceKey, dissolved);
-  }
-  log(`  provinces dissolved: ${finalProvinces.size}`);
-
-  // ── write
+  // ── level completion
   const finish = (polygons, level, label) => {
     const tolerance = opts.simplify * (SIMPLIFY_FACTOR[level] ?? 1);
     const kept = [];
@@ -550,90 +581,153 @@ async function main() {
     }
     if (dropped > 0) warnings.push(`${label}: ${dropped} sub-ring(s) too small to keep (${level})`);
     if (kept.length === 0) warnings.push(`${label}: simplification removed all geometry (${level})`);
-    return roundGeometry(kept, opts.precision);
+    return kept;
   };
 
+  /** Dissolves a set of units and validates the result against the input area. */
+  const dissolveUnits = (unitKeys, label) => {
+    const inputPolygons = unitKeys.flatMap((key) => units.get(key).polygons);
+    const expectedArea = netArea(inputPolygons);
+
+    const { rings, cancelled, totalEdges, open } = dissolve(inputPolygons);
+    if (open > 0) warnings.push(`${label}: ${open} unclosed ring(s) while dissolving`);
+    const polygons = ringsToPolygons(rings);
+    if (polygons.length === 0) { warnings.push(`${label}: dissolve produced no polygons`); return null; }
+
+    if (expectedArea > 0) {
+      const difference = Math.abs(netArea(polygons) - expectedArea) / expectedArea;
+      if (difference > AREA_TOLERANCE) {
+        warnings.push(`${label}: dissolved area differs from the unit area by ${(difference * 100).toFixed(3)}%`);
+      }
+    }
+
+    return { polygons, cancelled, totalEdges };
+  };
+
+  // municipality geometry: each unit dissolved against itself to drop internal seams
+  const unitGeometry = new Map();
+  for (const [unitKey, unit] of units) {
+    const { rings, open } = dissolve(unit.polygons);
+    if (open > 0) warnings.push(`${unitKey}: ${open} unclosed ring(s) inside a single unit`);
+    const polygons = ringsToPolygons(rings);
+    if (polygons.length === 0) { warnings.push(`${unitKey}: no geometry after self-dissolve`); continue; }
+    unitGeometry.set(unitKey, polygons);
+  }
+
+  const districtGeometry = new Map();
+  for (const [districtId, unitKeys] of districtsOf) {
+    const result = dissolveUnits([...unitKeys], districtId.replace('|', '/'));
+    if (result) districtGeometry.set(districtId, result);
+  }
+
+  const provinceGeometry = new Map();
+  for (const [provKey, unitKeys] of unitsOf) {
+    const result = dissolveUnits(unitKeys, provKey);
+    if (result) provinceGeometry.set(provKey, result);
+  }
+
+  log(`Dissolved ${districtGeometry.size} district(s) and ${provinceGeometry.size} province(s) from ${unitGeometry.size} unit(s)`);
+
+  // ── write
   let written = 0;
-
-  // ── district features — computed once, then reused by the province file
-  const districtFeatures = new Map(); // "PROV|DISTRICT" -> feature
-  for (const [key, group] of districtOutlines) {
-    const geometry = finish(group.polygons, 'district', key);
-    districtFeatures.set(key, featureOf(geometry, {
-      level: 'district', province: group.province, district: group.district,
-      municipalities: [...municipalities.keys()].filter((k) => k.startsWith(`${key}|`)).length,
-      bbox: bboxOfPolygons(geometry, opts.precision),
-    }));
-  }
-
-  // ── municipality features, grouped by district
-  const municipalityFeatures = new Map(); // "PROV|DISTRICT" -> feature[]
-  for (const [key, value] of municipalities) {
-    const [prov, district] = key.split('|');
-    const geometry = finish(value.polygons, 'municipality', key);
-    const group = municipalityFeatures.get(`${prov}|${district}`) ?? [];
-    group.push(featureOf(geometry, {
-      level: 'municipality', province: prov, district,
-      municipality: value.entry.municipality,
-      bbox: bboxOfPolygons(geometry, opts.precision),
-    }));
-    municipalityFeatures.set(`${prov}|${district}`, group);
-  }
-
-  /**
-   * One file per district holding the district's own dissolved outline plus every municipality
-   * in it, so the client can serve both the district and the municipality level from a single
-   * small download (only the districts actually in view are ever fetched).
-   */
-  for (const [key, districtFeature] of districtFeatures) {
-    const [prov, district] = key.split('|');
-    const group = (municipalityFeatures.get(key) ?? [])
-      .sort((a, b) => a.properties.municipality.localeCompare(b.properties.municipality));
-    const file = path.join(opts.out, `${prov}-${district}.json`);
-    const collection = {
-      schema: SCHEMA, province: prov, district,
-      count: group.length + 1, municipalities: group.length,
-      features: [districtFeature, ...group],
-    };
+  const writeCollection = async (file, collection, label) => {
     if (await writeOrCompare(file, serializeCollection(collection), opts.check)) {
       written++;
-      if (opts.check) stale.push(`${prov}-${district}.json`);
+      if (opts.check) stale.push(label);
+    }
+  };
+
+  // country outline (a single feature, only ever drawn zoomed out)
+  if (!existsSync(opts.country)) {
+    warnings.push(`country outline not found: ${toPosix(path.relative(REPO_ROOT, opts.country))}`);
+  } else {
+    const countryPolygons = parseGeoJsonPolygons(JSON.parse(await readFile(opts.country, 'utf8')));
+    if (countryPolygons.length === 0) {
+      warnings.push('country outline contained no polygons');
+    } else {
+      const geometry = finish(countryPolygons, 'country', 'country');
+      const feature = featureOf(geometry, {
+        level: 'country', iso: 'NPL', name: 'Nepal',
+        bbox: bboxOfPolygons(geometry, opts.precision),
+      });
+      await writeCollection(path.join(opts.out, 'country.json'),
+        { schema: SCHEMA, count: 1, features: [feature] }, 'country.json');
     }
   }
 
-  // ── province outlines: a single small file, fetched at most once per session
+  // province outlines in a single file
   const provinceFeatures = [];
-  for (const provinceKey of Object.keys(PROVINCES).sort((a, b) => PROVINCES[a].npp.localeCompare(PROVINCES[b].npp))) {
-    const polygons = finalProvinces.get(provinceKey);
-    if (!polygons) continue;
-
-    const geometry = finish(polygons, 'province', provinceKey);
-    const meta = PROVINCES[provinceKey];
+  for (const provKey of Object.keys(PROVINCES)) {
+    const result = provinceGeometry.get(provKey);
+    if (!result) continue;
+    const geometry = finish(result.polygons, 'province', provKey);
+    const meta = PROVINCES[provKey];
     provinceFeatures.push(featureOf(geometry, {
-      level: 'province', province: provinceKey, npp: meta.npp, name: meta.name,
-      districts: [...districtOutlines.values()].filter((d) => d.province === provinceKey).length,
+      level: 'province', province: provKey, npp: meta.npp, name: meta.name,
+      districts: [...districtsOf.keys()].filter((id) => id.startsWith(`${provKey}|`)).length,
+      municipalities: (unitsOf.get(provKey) ?? []).length,
       bbox: bboxOfPolygons(geometry, opts.precision),
     }));
   }
+  await writeCollection(path.join(opts.out, 'province.json'),
+    { schema: SCHEMA, count: provinceFeatures.length, features: provinceFeatures }, 'province.json');
 
-  provinceFeatures.sort((a, b) => a.properties.province.localeCompare(b.properties.province));
-  const provinceFile = path.join(opts.out, 'province.json');
-  if (await writeOrCompare(provinceFile, serializeCollection({ schema: SCHEMA, count: provinceFeatures.length, features: provinceFeatures }), opts.check)) {
-    written++;
-    if (opts.check) stale.push('province.json');
+  // one file per district: the district outline plus all of its municipalities
+  let districtFiles = 0;
+  for (const [districtId, unitKeys] of districtsOf) {
+    const [provKey, district] = districtId.split('|');
+    const result = districtGeometry.get(districtId);
+    if (!result) continue;
+
+    const districtOutline = finish(result.polygons, 'district', `${provKey}/${district}`);
+    const districtFeature = featureOf(districtOutline, {
+      level: 'district', province: provKey, district,
+      municipalities: unitKeys.length,
+      bbox: bboxOfPolygons(districtOutline, opts.precision),
+    });
+
+    const municipalityFeatures = [];
+    for (const unitKey of unitKeys) {
+      const polygons = unitGeometry.get(unitKey);
+      if (!polygons) continue;
+      const unit = units.get(unitKey);
+      const geometry = finish(polygons, 'municipality', unitKey.replace('|', '/'));
+      municipalityFeatures.push(featureOf(geometry, {
+        level: 'municipality', province: provKey, district, municipality: unit.name,
+        gnType: unit.type, code: unit.code,
+        bbox: bboxOfPolygons(geometry, opts.precision),
+      }));
+    }
+    municipalityFeatures.sort((a, b) => a.properties.municipality.localeCompare(b.properties.municipality));
+
+    const file = path.join(opts.out, `${provKey}-${district}.json`);
+    await writeCollection(file, {
+      schema: SCHEMA, province: provKey, district,
+      count: municipalityFeatures.length + 1, municipalities: municipalityFeatures.length,
+      features: [districtFeature, ...municipalityFeatures],
+    }, `${provKey}-${district}.json`);
+    districtFiles++;
   }
 
   // ── report
   console.log('');
-  console.log(`${'prov'.padEnd(6)}${'districts'.padStart(10)}${'municipalities'.padStart(15)}${'vertices'.padStart(11)}`);
-  for (const provinceKey of Object.keys(PROVINCES).sort((a, b) => PROVINCES[a].npp.localeCompare(PROVINCES[b].npp))) {
-    const districtsOfProvince = [...districtOutlines.values()].filter((d) => d.province === provinceKey);
-    const municipalitiesOfProvince = [...municipalities.keys()].filter((k) => k.startsWith(`${provinceKey}|`));
-    const verticesThisProvince = [...municipalities.entries()]
-      .filter(([key]) => key.startsWith(`${provinceKey}|`))
-      .reduce((sum, [, value]) => sum + countVertices(value.polygons), 0);
-    console.log(`${provinceKey.padEnd(6)}${String(districtsOfProvince.length).padStart(10)}${String(municipalitiesOfProvince.length).padStart(15)}${verticesThisProvince.toLocaleString('en-US').padStart(11)}`);
+  console.log(`${'prov'.padEnd(6)}${'districts'.padStart(10)}${'units'.padStart(7)}${'municipality vtx'.padStart(18)}${'district vtx'.padStart(14)}${'province vtx'.padStart(14)}`);
+  const totals = { units: 0, municipality: 0, district: 0, province: 0 };
+  for (const provKey of Object.keys(PROVINCES)) {
+    const unitKeys = unitsOf.get(provKey) ?? [];
+    const districts = [...districtsOf.keys()].filter((id) => id.startsWith(`${provKey}|`));
+    const municipalityVtx = unitKeys.reduce((sum, key) => sum + vertexCountOf(unitGeometry.get(key) ?? []), 0);
+    const districtVtx = districts.reduce((sum, id) => sum + vertexCountOf(districtGeometry.get(id)?.polygons ?? []), 0);
+    const provinceVtx = vertexCountOf(provinceGeometry.get(provKey)?.polygons ?? []);
+
+    totals.units += unitKeys.length;
+    totals.municipality += municipalityVtx;
+    totals.district += districtVtx;
+    totals.province += provinceVtx;
+
+    console.log(`${provKey.padEnd(6)}${String(districts.length).padStart(10)}${String(unitKeys.length).padStart(7)}${municipalityVtx.toLocaleString('en-US').padStart(18)}${districtVtx.toLocaleString('en-US').padStart(14)}${provinceVtx.toLocaleString('en-US').padStart(14)}`);
   }
+  console.log(`${'total'.padEnd(6)}${String(districtsOf.size).padStart(10)}${String(totals.units).padStart(7)}${totals.municipality.toLocaleString('en-US').padStart(18)}${totals.district.toLocaleString('en-US').padStart(14)}${totals.province.toLocaleString('en-US').padStart(14)}`);
 
   if (warnings.length > 0) {
     console.log(`\n${warnings.length} warning(s):`);
@@ -652,7 +746,7 @@ async function main() {
     return;
   }
 
-  console.log(`\nWrote ${written} outline file(s) to ${toPosix(path.relative(REPO_ROOT, opts.out))}/`);
+  console.log(`\nWrote ${written} outline file(s) (${districtFiles} district file(s)) to ${toPosix(path.relative(REPO_ROOT, opts.out))}/`);
 
   const produced = (await readdir(opts.out)).filter((name) => name.endsWith('.json'));
   let bytes = 0;
