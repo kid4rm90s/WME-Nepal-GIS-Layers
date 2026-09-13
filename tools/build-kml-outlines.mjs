@@ -11,10 +11,13 @@
  *                                                    GAPA_NAP_2 and GN_TYPE_12
  *   Nepal_Intl_Boundary/Nepal_Intl_Boudnary.geojson  the national outline, a single Polygon
  *
- * The national boundary comes from a different source than the local-unit polygons and sits about
- * 250 m east of them, so it is shifted onto the authoritative border. Measured by nearest-vertex
- * matching against the local-unit border, -250 m east / +25 m north minimises the mean distance
- * (150 m, limited by how differently the two datasets generalise the border).
+ * The national boundary is a different source from the local-unit polygons and does not align with
+ * them: measured by nearest-vertex matching it sits ~250 m east of the province/district border
+ * (shifting it -250 m east / +25 m north takes the mean mismatch from 262 m down to 33 m).
+ *
+ * KNOWN ISSUE — no shift is applied by default, because a corrected national boundary file is
+ * expected to replace this one. Until it does, the offset can be nudged with --country-north /
+ * --country-east without touching any code.
  *
  * Why these sources: an earlier revision dissolved the WARD layer instead, which produced broken
  * parents (the ward KMLs are a labelling/seam source, not clean topology). The local-unit polygons
@@ -79,8 +82,8 @@ function printUsage() {
 
   --provinces=<dir>   Folder of <PROV>.kml files (default: <repo>/KML_Province)
   --country=<file>    National outline GeoJSON (default: <repo>/Nepal_Intl_Boundary/Nepal_Intl_Boudnary.geojson)
-  --country-north=<m> Shift the national outline north by this many metres (default: 25)
-  --country-east=<m>  Shift the national outline east by this many metres (default: -250)
+  --country-north=<m> Shift the national outline north by this many metres (default: 0)
+  --country-east=<m>  Shift the national outline east by this many metres (default: 0)
   --out=<dir>         Output folder (default: <repo>/outlines)
   --simplify=<deg>    Base Douglas-Peucker tolerance in degrees (default 0.0001, 0 disables)
   --precision=<n>     Decimal places for output coordinates (default 6)
@@ -93,8 +96,8 @@ function parseArgs(argv) {
   const opts = {
     provinces: path.join(REPO_ROOT, 'KML_Province'),
     country: path.join(REPO_ROOT, 'Nepal_Intl_Boundary', 'Nepal_Intl_Boudnary.geojson'),
-    countryNorth: 25,   // metres; aligns the national outline with the local-unit border
-    countryEast: -250,  // metres
+    countryNorth: 0,   // metres; no shift by default — the source file is due to be replaced
+    countryEast: 0,    // metres
     out: path.join(REPO_ROOT, 'outlines'),
     simplify: 0.0001,
     precision: 6,
@@ -456,9 +459,8 @@ function ringTolerance(ring, base) {
 
 /**
  * Shifts a polygon set by a metric offset, converted at its mean latitude.
- * The national boundary GeoJSON is a different source from the local-unit polygons and sits east of
- * them, so this nudges it onto the authoritative border (see the --country-north/--country-east
- * defaults for the measured best fit).
+ * Off by default (0/0): the national boundary source does not align with the local-unit border
+ * (see the header note) and is expected to be replaced, so no correction is baked in.
  */
 function offsetPolygons(polygons, northMeters, eastMeters) {
   if (northMeters === 0 && eastMeters === 0) return polygons;
