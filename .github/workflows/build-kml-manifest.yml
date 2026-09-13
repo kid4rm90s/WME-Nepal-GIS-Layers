@@ -1,4 +1,4 @@
-name: Build KML manifest
+name: Build KML manifests and outlines
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
     paths:
       - 'KML_Nepal/**'
       - 'tools/build-kml-manifest.mjs'
+      - 'tools/build-kml-outlines.mjs'
       - '.github/workflows/build-kml-manifest.yml'
   workflow_dispatch:
 
@@ -31,8 +32,13 @@ jobs:
       - name: Generate manifests
         run: node tools/build-kml-manifest.mjs
 
-      - name: Verify generator is idempotent
-        run: node tools/build-kml-manifest.mjs --check
+      - name: Generate dissolved outlines
+        run: node tools/build-kml-outlines.mjs
+
+      - name: Verify generators are idempotent
+        run: |
+          node tools/build-kml-manifest.mjs --check
+          node tools/build-kml-outlines.mjs --check
 
       - name: Commit if changed
         run: |
@@ -40,8 +46,8 @@ jobs:
             git config user.name  "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add KML_Nepal
-            git commit -m "chore: rebuild KML viewport manifests"
+            git commit -m "chore: rebuild KML viewport manifests and outlines"
             git push
           else
-            echo "Manifests already up to date."
+            echo "Manifests and outlines already up to date."
           fi
